@@ -1,0 +1,26 @@
+
+.add-role{
+    max-width: 30%;
+}
+
+.margin-tp{
+    margin-top: 25px;
+}
+
+.add-staff{
+    max-width: 70%;
+}
+
+.createForm{
+    border: 2px solid #0b2e13;
+    background-color: #cbe0f6;
+}
+
+.userProfile {
+    border: 3px solid #44973b;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    background-color: #cbdbea;
+    box-shadow: 5px 4px 5px #999;
+}
+

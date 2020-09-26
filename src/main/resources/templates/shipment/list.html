@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>List of Shipments</title>
+</head>
+
+<body layout:fragment="content" class="margin-tp">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <h2>List of All Shipment</h2>
+    <table class="table table-striped table-sm">
+        <caption class="table-head">LIST OF All SHIPMENT</caption>
+        <tr>
+            <th>ID</th>
+            <th>SHIPMENT LOCATION</th>
+            <th>STATUS</th>
+            <th>UPDATE STATUS</th>
+            <th>DETAILS</th>
+        </tr>
+        <tr th:each="c : *{shipments}">
+            <td th:text="${c.getId()}"></td>
+            <td th:text="${c.getShippingLocation()}"></td>
+            <td th:text="${c.getStatus()}"></td>
+            <td><a th:href="@{/shipments/updateStatus/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Update Status</button></a></td>
+            <td><a th:href="@{/shipments/details/{id}(id=${c.getId()})}"><button class="btn-info" name="button">Details</button></a></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

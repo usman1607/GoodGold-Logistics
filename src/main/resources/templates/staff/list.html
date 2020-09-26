@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Home</title>
+</head>
+
+<body layout:fragment="content" class="margin-tp">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+
+        </div>
+    </div>
+
+    <h2>List of All Staff</h2>
+    <table class="table table-striped table-sm bg-dark text-white">
+        <caption class="table-head">LIST OF All STAFF</caption>
+        <tr>
+            <th>ID</th>
+            <th>FIRST NAME</th>
+            <th>LAST NAME</th>
+            <th>EMAIL</th>
+            <th>PHONE NO</th>
+            <th>COUNTRY</th>
+            <th>JOB TITLE</th>
+            <th>Assign Role</th>
+            <th>DETAILS</th>
+            <th>EDIT</th>
+        </tr>
+        <tr th:each="s : *{staffs}">
+            <td th:text="${s.getId()}"></td>
+            <td th:text="${s.getFirstName()}"></td>
+            <td th:text="${s.getLastName()}"></td>
+            <td th:text="${s.getUsername()}"></td>
+            <td th:text="${s.getPhoneNo()}"></td>
+            <td th:text="${s.getCountry()}"></td>
+            <td th:text="${s.getJobTitle()}"></td>
+            <td><a th:href="@{/staffs/assignRole/{id}(id=${s.getId()})}"><button class="btn-outline-success" name="button">Assign Role</button></a></td>
+            <td><a th:href="@{/staffs/details/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Full Details</button></a></td>
+            <td><a th:href="@{/staffs/edit/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
+<!--            <td><a th:href="@{/staffs/delete/{id}(id=${s.getId()})}"><button class="btn-danger" name="button">Delete</button></a></td>-->
+        </tr>
+    </table>
+
+    <a th:href="@{/staffs/create}">Add New USer</a>
+</main>
+
+</body>
+</html>

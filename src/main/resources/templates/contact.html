@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Contact Us</title>
+</head>
+
+<body layout:fragment="content" class="margin-tp">
+
+<div class="container">
+
+    <div class="row mt-5 mb-5">
+
+        <div class="col-md-4">
+
+            <div class="alert alert-info">
+                <h2><span style="font-weight: 300;">Get in Touch</span></h2>
+                <p>If you have any question about MDS Logistics or how we can support your business,
+                    please contact us directly by filling our short feedback form.</p>
+                <p style="font-size: 14px;"><i class="fa fa-map-marker fa-2x" style="padding-right: 30px; color: #00ccff;">
+                </i>Plot 16 Kudirat Abiola Way, Ikeja, Lagos.</p>
+                <p style="font-size: 14px;"><i class="fa fa-envelope fa-2x" style="padding-right: 20px; color: #00ccff;">
+                </i><a href="mailto:info@goodgoldlogistics.com">info@goodgoldlogistics.com</a></p>
+                <p style="font-size: 14px;"><i class="fa fa-phone fa-2x" style="padding-right: 25px; color: #00ccff;">
+                </i>+234 806 303 1444, 802 093 9901</p>
+            </div>
+
+        </div>
+        <div class="card col-md-6 createForm">
+            <div class="card-header">
+                <h3 class="header-title">Contact Us</h3>
+            </div>
+
+            <div class="card-body">
+
+                <form action="" method="">
+
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" id="fullName" class="form-control" name="fullName" required>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-6">
+                            <label>Email:</label>
+                            <input type="email" id="email" class="form-control" name="email" required>
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label>Subject:</label>
+                            <input type="text" id="subject" class="form-control" name="subject" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message:</label>
+                        <textarea name="message" class="form-control" cols="25" rows="5" required></textarea>
+                    </div>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

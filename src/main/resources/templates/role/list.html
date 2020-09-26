@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>List of Roles</title>
+</head>
+
+<body layout:fragment="content" class="margin-tp">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="p-2 add-role createForm" >
+        <h4>Create Role</h4>
+        <form method="post" th:action="${'/roles/add'}">
+            <div class="form-group">
+                <label>Role Name</label>
+                <input type="text" class="form-control mw-100" name="name" required>
+            </div>
+            <div >
+                <button class="btn-outline-success" name="button">Add Role</button>
+            </div>
+        </form>
+    </div>
+    <!--                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+
+    <h2>List of All Roles</h2>
+    <table class="table table-striped table-sm">
+        <caption class="table-head">LIST OF All ROLES</caption>
+        <tr>
+            <th>ID</th>
+            <th>ROLE NAME</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+        </tr>
+        <tr th:each="c : *{roles}">
+            <td th:text="${c.getId()}"></td>
+            <td th:text="${c.getName()}"></td>
+            <td><a th:href="@{/roles/edit/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
+            <td><a th:href="@{/roles/delete/{id}(id=${c.getId()})}"><button class="btn-danger" name="button">Delete</button></a></td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>
