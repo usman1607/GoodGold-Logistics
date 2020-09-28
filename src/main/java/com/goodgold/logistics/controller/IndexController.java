@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class IndexController {
@@ -22,6 +19,11 @@ public class IndexController {
     @GetMapping("/layout")
     public String layout(Model model){
         return "/layout";
+    }
+
+    @GetMapping("/layout2")
+    public String layout2(Model model){
+        return "/layout2";
     }
 
     @GetMapping("/about")
@@ -45,23 +47,10 @@ public class IndexController {
         return "/login";
     }
 
-//    @PostMapping("/loginSecure")
-//    public String loginSecure(@RequestAttribute("username") String username, @RequestAttribute("password")  String password) {
-//
-//        //does the authentication
-//        final Authentication authentication = authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        username,
-//                        password
-//                )
-//        );
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
-//        return "/index";
-//    }
-
     @GetMapping("/admins/dashboard/{username}")
     public String admin(@PathVariable("username") String username, Model model){
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
     }
+
 }

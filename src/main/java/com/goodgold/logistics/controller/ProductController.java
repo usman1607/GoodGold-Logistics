@@ -40,12 +40,12 @@ public class ProductController {
         return "product/list";
     }
 
-    @GetMapping("/products/create/{id}")
-    public String create(@PathVariable("id") long id,  Model model){
+    @GetMapping("/products/create/{username}")
+    public String create(@PathVariable("username") String username,  Model model){
 
         model.addAttribute("warehouses", warehouseRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("user", userRepository.findById(id).get());
+        model.addAttribute("user", userRepository.findUserByUsername(username));
         return "product/create";
     }
 
@@ -60,7 +60,7 @@ public class ProductController {
         Warehouse w = warehouseRepository.findWarehouseByCode(registerShipmentModel.getWarehouseCode());
         s.setWarehouse(w);
         s.setShippingLocation(registerShipmentModel.getShippingLocation());
-        s.setStatus("not decided");
+        s.setStatus("In Transit");
         Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
         Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
         s.setShippingDate(shipDate);
@@ -82,4 +82,21 @@ public class ProductController {
         return "redirect:/products/list";
     }
 
+    @GetMapping("/products/details/{id}")
+    public String productDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("product", productRepository.findById(id).get());
+        return "product/details";
+    }
+
+    @GetMapping("/products/myList/{username}")
+    public String myList(@PathVariable("username") String username, Model model){
+        model.addAttribute("products", productRepository.findProductsByUserUsername(username));
+        return "product/list";
+    }
+
+    @GetMapping("/users/products/{id}")
+    public String userProducts(@PathVariable("id") long id, Model model){
+        model.addAttribute("products", productRepository.findProductsByUserId(id));
+        return "product/list";
+    }
 }

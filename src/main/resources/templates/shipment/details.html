@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
+<head>
+    <title>Shipment Details</title>
+</head>
+
+<body layout:fragment="content" class="margin-tp">
+
+<div class="col-md-8 text-left userProfile h3 font-weight-normal mb-5">
+    <h4 class="h4">Shipment Details</h4>
+    <table class="table table-hover table-striped">
+        <tr>
+            <td>ID</td>
+            <td th:text="${shipment.getId()}"></td>
+        </tr>
+        <tr>
+            <td>SHIPPING FROM:</td>
+            <td th:text="${shipment.getShippingLocation()}"></td>
+        </tr>
+        <tr>
+            <td>SHIPPING TO:</td>
+            <td th:text="${shipment.getWarehouse().getCode()}"></td>
+        </tr>
+        <tr>
+            <td>SHIPPING DATE</td>
+            <td th:text="${shipment.getShippingDate()}"> </td>
+        </tr>
+        <tr>
+            <td>E.D.D.</td>
+            <td th:text="${shipment.getExpectedDeliveryDate()}"></td>
+        </tr>
+<!--        <tr>-->
+<!--            <td>A.D.D.</td>-->
+<!--            <td th:text="${shipment.getActualDeliveryDate()}"></td>-->
+<!--        </tr>-->
+        <tr>
+            <td>TRACKING NO.</td>
+            <td th:text="${shipment.getTrackingNo()}"></td>
+        </tr>
+        <tr>
+            <td>SHIPMENT STATUS</td>
+            <td th:text="${shipment.getStatus()}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

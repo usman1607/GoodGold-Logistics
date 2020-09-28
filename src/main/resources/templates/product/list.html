@@ -1,42 +1,138 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>List of Products</title>
 </head>
 
 <body layout:fragment="content" class="margin-tp">
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/admins/dashboard/{username}(username=${#request.remoteUser})}">
+                            <i class="fa fa-user"></i>My Dashboard
+                        </a>
+                    </li>
+                    <div sec:authorize="hasRole('STAFF')">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/sellers/list}">
+                                <i class="fa fa-clipboard-list"></i>All Sellers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/staffs/list}">
+                                <i class="fa fa-clipboard-list"></i>All Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/staffs/create}">
+                                <i class="fa fa-plus-circle"></i>Add New Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/roles/list}">
+                                <i class="fa fa-clipboard-list"></i>All Roles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/categories/list}">
+                                <i class="fa fa-clipboard-list"></i>All Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/list}">
+                                <i class="fa fa-clipboard-list"></i>All Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/warehouses/list}">
+                                <i class="fa fa-clipboard-list"></i>All Warehouses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/shipments/list}">
+                                <i class="fa fa-ship"></i>All Shipments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-edit"></i>Edit My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-key"></i>Change Password
+                            </a>
+                        </li>
+                    </div>
+
+                    <div sec:authorize="hasRole('SELLER')">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/myList/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-clipboard-list"></i>All My Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-plus-circle"></i>Add New Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-edit"></i>Edit My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-key"></i>Change Password
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/myPaymentStatus/details/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-question-circle"></i>My Status
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+
+                </div>
             </div>
 
-        </div>
+            <h2>List of All Products</h2>
+            <table class="table table-striped table-sm bg-dark text-white">
+                <caption class="table-head">LIST OF All PRODUCTS</caption>
+                <tr>
+                    <th>ID</th>
+                    <th>PRODUCT NAME</th>
+                    <th>CATEGORY</th>
+                    <th>QUANTITY</th>
+                    <th>SHIPMENT STATUS</th>
+                    <th>DETAILS</th>
+                </tr>
+                <tr th:each="c : *{products}">
+                    <td th:text="${c.getId()}"></td>
+                    <td th:text="${c.getName()}"></td>
+                    <td th:text="${c.getCategory().getName()}"></td>
+                    <td th:text="${c.getQuantity()}"></td>
+                    <td th:text="${c.getShipment().getStatus()}"></td>
+                    <td><a th:href="@{/products/details/{id}(id=${c.getId()})}"><button class="btn-info" name="button">Details</button></a></td>
+                </tr>
+            </table>
+        </main>
     </div>
-
-    <h2>List of All Products</h2>
-    <table class="table table-striped table-sm">
-        <caption class="table-head">LIST OF All PRODUCTS</caption>
-        <tr>
-            <th>ID</th>
-            <th>PRODUCT NAME</th>
-            <th>CATEGORY</th>
-            <th>QUANTITY</th>
-            <th>DETAILS</th>
-            <th>EDIT</th>
-        </tr>
-        <tr th:each="c : *{products}">
-            <td th:text="${c.getId()}"></td>
-            <td th:text="${c.getName()}"></td>
-            <td th:text="${c.getCategory().getName()}"></td>
-            <td th:text="${c.getQuantity()}"></td>
-            <td><a th:href="@{/products/details/{id}(id=${c.getId()})}"><button class="btn-info" name="button">Details</button></a></td>
-            <td><a th:href="@{/products/edit/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
-        </tr>
-    </table>
-</main>
+</div>
 </body>
 </html>

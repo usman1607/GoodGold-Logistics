@@ -44,6 +44,12 @@ public class WarehouseController {
         return "redirect:/warehouses/list";
     }
 
+    @GetMapping("/warehouses/details/{id}")
+    public String warehouseDetails(@PathVariable("id") int id, Model model){
+        model.addAttribute("warehouse", warehouseRepository.findById(id).get());
+        return "warehouse/details";
+    }
+
     @RequestMapping(value = "/warehouses/edit/{id}", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") int id, Model model) {
 

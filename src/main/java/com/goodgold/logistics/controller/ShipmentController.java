@@ -9,10 +9,7 @@ import com.goodgold.logistics.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,6 +32,18 @@ public class ShipmentController {
     public String shipments(Model model){
         model.addAttribute("shipments", shipmentRepository.findAll());
         return "shipment/list";
+    }
+
+    @GetMapping("/shipments/details/{id}")
+    public String shipmentDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("shipment", shipmentRepository.findById(id).get());
+        return "shipment/details";
+    }
+
+    @GetMapping("/shipments/updateStatus/{id}")
+    public String shipmentUpdateStatus(@PathVariable("id") long id, Model model){
+        model.addAttribute("shipment", shipmentRepository.findById(id).get());
+        return "shipment/updateStatus";
     }
 
     @RequestMapping(value = "/shipments/edit/{id}", method = RequestMethod.GET)

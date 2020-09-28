@@ -82,7 +82,7 @@ public class UserController {
             u.setTitle("Seller");
 
             userRepository.save(u);
-            //redirectAttributes.addAttribute("error","");
+            redirectAttributes.addAttribute("success","success");
             return "redirect:/login";
         }
         return "redirect:/users/create";
@@ -100,10 +100,79 @@ public class UserController {
         return "user/SellersList";
     }
 
+    @RequestMapping(value = "/users/details/{id}", method = RequestMethod.GET)
+    public String sellerDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "/user/sellerDetails";
+    }
+
+    @RequestMapping(value = "/users/profile/{username}", method = RequestMethod.GET)
+    public String showUpdateForm(@PathVariable("username") String username, Model model) {
+
+        model.addAttribute("user", userRepository.findUserByUsername(username));
+        return "user/edit";
+    }
+
+    @PostMapping("/users/update")
+    public String updateSellerProfile(Model model, @RequestParam long id, RegisterUserModel registerUserModel){
+        User u = userRepository.findById(id).get();
+
+        u.setFirstName(registerUserModel.getFirstName());
+        u.setLastName(registerUserModel.getLastName());
+        u.setAddress(registerUserModel.getAddress());
+        u.setCity(registerUserModel.getCity());
+        u.setState(registerUserModel.getState());
+        u.setCountry(registerUserModel.getCountry());
+        u.setPhoneNo(registerUserModel.getPhoneNo());
+
+        userRepository.save(u);
+        String username = u.getUsername();
+
+        return "redirect:/admins/dashboard/"+username;
+    }
+
+    @GetMapping("/users/changePass/{username}")
+    public String changePassword(@PathVariable("username") String username, Model model){
+        model.addAttribute("user", userRepository.findUserByUsername(username));
+        return "user/editPassword";
+    }
+
+    @PostMapping("/users/updatePassword")
+    public String updatePassword(Model model, @RequestParam long id, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmPassword, RedirectAttributes redirectAttributes){
+        User u = userRepository.findById(id).get();
+        String username = u.getUsername();
+
+        String old = passwordEncoder.encode(oldPassword);
+        if(!old.equals(u.getPassword())){
+            redirectAttributes.addAttribute("error","Password is not correct...");
+        }
+
+        else if(!newPassword.equals(confirmPassword)){
+            redirectAttributes.addAttribute("passError","Password does not match ");
+        }
+        else if(newPassword.isBlank()||newPassword.isEmpty()){
+            redirectAttributes.addAttribute("passError","New Password can not be empty or blank ");
+        }
+
+        else{
+            u.setPassword(old);
+            userRepository.save(u);
+            return "redirect:/admins/dashboard/"+username;
+        }
+
+        return "redirect:/users/changePass/"+username;
+    }
+
     @RequestMapping(value = "/staffs/list", method = RequestMethod.GET)
     public String staffs(Model model){
         model.addAttribute("staffs", userRepository.findUsersByTitleEquals("Staff"));
         return "staff/list";
+    }
+
+    @RequestMapping(value = "/staffs/details/{id}", method = RequestMethod.GET)
+    public String staffDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
+        return "/staff/staffDetails";
     }
 
     @GetMapping("/staffs/create")
@@ -175,12 +244,10 @@ public class UserController {
         roleList.add(role);
         s.setRoles(roleList);
 
-
         userRepository.save(s);
 
         return "redirect:/staffs/list";
     }
-
 
     @RequestMapping(value = "/staffs/delete/{id}", method = RequestMethod.GET)
     public String remove(@PathVariable("id") long id, Model model) {

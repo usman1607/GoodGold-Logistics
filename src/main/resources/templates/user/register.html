@@ -21,7 +21,7 @@
                     <div th:if="${param.error}">
                         <span class="text-danger" th:text="${param.error}"></span>
                     </div>
-                    <form th:action="@{/users/register}" method="post">
+                    <form th:action="@{/users/register}" method="post" onsubmit="congrats()">
                             <div class="row col-12">
                                 <div class="form-group col-6">
                                     <label>First Name:</label>
@@ -106,7 +106,9 @@
                             </div>
 
 
-                            <lable>I accept all the <a href="#">term and conditions</a></lable>
+                            <lable>I accept all the <a data-toggle="modal" data-target="#myModal" href="#">
+                                Term and Conditions</a>
+                            </lable>
                             <label>
                                 <input type="checkbox" value="yes" required> Yes
                             </label>
@@ -117,6 +119,56 @@
             </div>
     </div>
 </div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title text-info">Term and Conditions</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>On this page, you will find a standard version of the GOOD GOLD LOGISTICS Website Terms and Conditions. Please note that different terms and conditions may apply in certain countries.
+                    The Terms and Conditions of use of the GOOD GOLD LOGISTICS Website are as follows:</p>
+
+                <p>Copyright <br>
+                    The copyright in this publication is owned by GOOD GOLD LOGISTICS International GmbH.</p>
+
+                <p>Authorization to Reproduce<br>
+                    Any person may reproduce any portion of the material in these web pages subject to the following conditions:<p>
+
+                <ul>
+                    <li>The material may be used for information and non-commercial purposes only.</li>
+                    <li>It may not be modified in any way.</li>
+                    <li>No unauthorized copy is made of any GOOD GOLD LOGISTICS trademark.</li>
+                    <li>Any copy of any portion of the material must include the following copyright notice:</li>
+                </ul>
+                <p class="text-info text-center">Copyright © GOOD GOLD LOGISTICS International.<br> All Rights Reserved.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script th:src="@{/js/sweetalert2.all.min.js}"></script>
+
+<script>
+    function congrats(){
+        Swal.fire({
+            icon: 'success',
+            title: 'Congratulations! You have successfully registered.',
+            showConfirmButton: false,
+            timer: 5000
+        })
+    }
+
+</script>
+
 
 </body>
 </html>

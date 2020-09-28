@@ -1,13 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>List of Categories</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Usman Gee">
+
+    <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">GOOD GOLD Logistics</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/modern-business.css}">
+    <link rel="stylesheet" th:href="@{/css/myCss.css}">
+    <link rel="stylesheet" th:href="@{/css/signin.css}">
+    <link rel="stylesheet" th:href="@{/fa/css/all.css}">
+
 </head>
 
-<body layout:fragment="content" class="margin-tp">
+<body>
+
+<!-- Navigation -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-success">
+
+    <div class="container">
+
+        <a class="navbar-brand" th:href="@{/}">
+            <img style="width: 25%" th:src="@{/images/logo1.png}">
+        </a>
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}"><i class="fa fa-home"></i>Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/about}"><i class="fa fa-info"></i>About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/contact}"><i class="fa fa-envelope"></i>Contact</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blog
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+                        <a class="dropdown-item" href="#">Testimonies</a>
+                        <a class="dropdown-item" href="#">Our Staffs</a>
+                        <a class="dropdown-item" href="#">Our Warehouses</a>
+                    </div>
+                </li>
+
+                <div sec:authorize="isAuthenticated()">
+                    <li class="icons dropdown">
+                        <div class="text-white user-img c-pointer position-relative"   data-toggle="dropdown">
+                            <!--                        <span class="activity active"></span>-->
+                            <!--                            <img th:src="@{/images/1.png}" height="40" width="40" alt="">-->
+                            <i class="fa fa-user-circle fa-2x"></i>
+                            <span sec:authentication="name">Username</span>
+                        </div>
+                        <div class="drop-down dropdown-profile dropdown-menu">
+                            <div class="dropdown-content-body">
+                                <ul>
+                                    <li>
+                                        <a th:href="@{/admins/dashboard/{username}(username=${#request.remoteUser})}">
+                                            <i class="fa fa-user"></i>My Page
+                                        </a>
+                                    </li>
+                                    <li><a th:href="@{/logout}"><i class="fa fa-sign-out-alt"></i>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" th:href="@{/login}"><i class="fa fa-sign-in-alt"></i>login</a>
+                </li>
+                <li sec:authorize="isAnonymous()" class="nav-item">
+                    <a class="nav-link" th:href="@{/users/create}"><i class="fa fa-plus-circle"></i>SignUp</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="margin-tp">
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -102,47 +190,45 @@
             </div>
         </nav>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-        <!--                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
+                        <!--                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
                     </div>
-
                 </div>
             </div>
 
-            <div class="p-2 add-role createForm" style="border-width: 1px; border-style: solid; color: #0b2e13">
-                <h4>Create Category</h4>
-                <form method="post" th:action="${'/categories/add'}">
-                    <div class="form-group">
-                        <label>Category Name</label>
-                        <input type="text" class="form-control mw-100" name="name" required>
-                    </div>
-                    <div >
-                        <button class="btn-outline-success" name="button">Add Category</button>
-                    </div>
-                </form>
-            </div>
-            <!--                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>-->
+            <!-- Content Section -->
+            <section layout:fragment="content">
+                <p>This is filled by the content template.</p>
+            </section>
 
-            <h2>List of All Category</h2>
-            <table class="table table-striped table-sm bg-dark text-white">
-                <caption class="table-head">LIST OF All CATEGORY</caption>
-                <tr>
-                    <th>ID</th>
-                    <th>CATEGORY NAME</th>
-                    <th>EDIT</th>
-                    <th>DELETE</th>
-                </tr>
-                <tr th:each="c : *{categories}">
-                    <td th:text="${c.getId()}"></td>
-                    <td th:text="${c.getName()}"></td>
-                    <td><a th:href="@{/categories/edit/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
-                    <td><a th:href="@{/categories/delete/{id}(id=${c.getId()})}"><button class="btn-danger" name="button">Delete</button></a></td>
-                </tr>
-            </table>
         </main>
     </div>
 </div>
+</div>
+
+
+<!-- Footer -->
+<footer class="py-1 bg-success fixed-bottom">
+    <div class="container">
+        <p class="m-0 text-center text-white">
+            Copyright &copy; GOOD GOLD Logistics 2020
+
+            <a th:href="@{https://www.facebook.com}" target="_blank"><i class="ml-5 mr-2 fab fa-facebook-f"></i></a>
+            <i class="mr-2 fab fa-twitter"></i>
+            <i class="mr-2 fab fa-instagram"></i>
+            <i class="mr-2 fab fa-github"></i>
+        </p>
+    </div>
+</footer>
+
+
+<script th:src="@{/jquery/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+
+<th:block layout:fragment="optional" />
+
 </body>
 </html>

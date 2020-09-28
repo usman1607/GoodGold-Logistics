@@ -1,89 +1,185 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Add New Product</title>
 </head>
 
 <body layout:fragment="content" class="margin-tp">
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group mr-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/admins/dashboard/{username}(username=${#request.remoteUser})}">
+                            <i class="fa fa-user"></i>My Dashboard
+                        </a>
+                    </li>
+                    <div sec:authorize="hasRole('STAFF')">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/sellers/list}">
+                                <i class="fa fa-clipboard-list"></i>All Sellers
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/staffs/list}">
+                                <i class="fa fa-clipboard-list"></i>All Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/staffs/create}">
+                                <i class="fa fa-plus-circle"></i>Add New Staff
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/roles/list}">
+                                <i class="fa fa-clipboard-list"></i>All Roles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/categories/list}">
+                                <i class="fa fa-clipboard-list"></i>All Categories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/list}">
+                                <i class="fa fa-clipboard-list"></i>All Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/warehouses/list}">
+                                <i class="fa fa-clipboard-list"></i>All Warehouses
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/shipments/list}">
+                                <i class="fa fa-ship"></i>All Shipments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-edit"></i>Edit My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-key"></i>Change Password
+                            </a>
+                        </li>
+                    </div>
+
+                    <div sec:authorize="hasRole('SELLER')">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/myList/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-clipboard-list"></i>All My Products
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-plus-circle"></i>Add New Product
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-edit"></i>Edit My Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-key"></i>Change Password
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/myPaymentStatus/details/{username}(username=${#request.remoteUser})}">
+                                <i class="fa fa-question-circle"></i>My Status
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+        <!--                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
+                    </div>
+
+                </div>
             </div>
 
-        </div>
+            <div class="p-2 add-staff createForm" >
+                <h4>Add New Product</h4>
+                <form method="post" th:action="${'/products/add'}" th:object="${user}">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <div class="row col-12">
+                        <div class="form-group col-4">
+                            <label>Product Name</label>
+                            <input type="text" class="form-control mw-100" name="name" required>
+                        </div>
+
+                        <div class="form-group col-4" >
+                            <label>Product Category</label>
+                            <select class="form-control" name="categoryName">
+                                <option value="">--Select--</option>
+                                <option th:each="c : ${categories}" th:value="${c.getName()}" th:text="${c.getName()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Product Quantity</label>
+                            <input type="number" class="form-control mw-100" name="quantity" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label>Product Description</label>
+                        <input type="text" class="form-control mw-100" name="description">
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-4" >
+                            <label>Warehouse Shipping To:</label>
+                            <select class="form-control" name="warehouseCode">
+                                <option value="">--Select--</option>
+                                <option th:each="w : ${warehouses}" th:value="${w.getCode()}" th:text="${w.getCode()}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Shipping from where?</label>
+                            <input type="text" class="form-control" name="shippingLocation">
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Tracking No.:</label>
+                            <input type="text" class="form-control" name="trackingNo">
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-6">
+                            <label>Shipping Date:</label>
+                            <input type="datetime-local" class="form-control mw-100" name="shippingDate">
+                        </div>
+
+                        <div class="form-group col-6">
+                            <label>EDD</label>
+                            <input type="datetime-local" class="form-control mw-100" name="expectedDeliveryDate">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="btn-outline-success" name="button">Add Product</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
     </div>
-
-    <div class="p-2 add-staff createForm" >
-        <h4>Add New Product</h4>
-        <form method="post" th:action="${'/products/add'}" th:object="${user}">
-            <input type="hidden" name="id" th:field="${id}">
-            <div class="row col-12">
-                <div class="form-group col-4">
-                    <label>Product Name</label>
-                    <input type="text" class="form-control mw-100" name="name" required>
-                </div>
-
-                <div class="form-group col-4" >
-                    <label>Product Category</label>
-                    <select class="form-control" name="categoryName">
-                        <option value="">--Select--</option>
-                        <option th:each="c : ${categories}" th:value="${c.getName()}" th:text="${c.getName()}"></option>
-                    </select>
-                </div>
-
-                <div class="form-group col-4">
-                    <label>Product Quantity</label>
-                    <input type="number" class="form-control mw-100" name="quantity" required>
-                </div>
-            </div>
-
-            <div class="form-group col-12">
-                <label>Product Description</label>
-                <input type="text" class="form-control mw-100" name="description">
-            </div>
-
-            <div class="row col-12">
-                <div class="form-group col-4" >
-                    <label>Warehouse Shipping To:</label>
-                    <select class="form-control" name="warehouseCode">
-                        <option value="">--Select--</option>
-                        <option th:each="w : ${warehouses}" th:value="${w.getCode()}" th:text="${w.getCode()}"></option>
-                    </select>
-                </div>
-
-                <div class="form-group col-4">
-                    <label>Shipping from where?</label>
-                    <input type="text" class="form-control" name="shippingLocation">
-                </div>
-
-                <div class="form-group col-4">
-                    <label>Tracking No.:</label>
-                    <input type="text" class="form-control" name="trackingNo">
-                </div>
-            </div>
-
-            <div class="row col-12">
-                <div class="form-group col-6">
-                    <label>Shipping Date:</label>
-                    <input type="datetime-local" class="form-control mw-100" name="shippingDate">
-                </div>
-
-                <div class="form-group col-6">
-                    <label>EDD</label>
-                    <input type="datetime-local" class="form-control mw-100" name="expectedDeliveryDate">
-                </div>
-            </div>
-
-            <div>
-                <button class="btn-outline-success" name="button">Add Product</button>
-            </div>
-        </form>
-    </div>
-
-</main>
+</div>
 </body>
 </html>
