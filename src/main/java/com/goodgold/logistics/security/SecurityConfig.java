@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                // .loginProcessingUrl("/loginSecure")
-                .defaultSuccessUrl("//https://goodgoldlogistics.herokuapp.com", true)
+                .defaultSuccessUrl("/goodgoldlogistics.herokuapp.com", true)
               //  .usernameParameter("username").passwordParameter("password")
                 //.failureUrl("/login.html?error=true")
                 //.failureHandler(authenticationFailureHandler())
