@@ -52,5 +52,10 @@ public class IndexController {
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
     }
+    //https:/
+    @GetMapping("/goodgoldlogistics.herokuapp.com")
+    public String indexGgl(Model model){
 
+        return "/index";
+    }
 }
