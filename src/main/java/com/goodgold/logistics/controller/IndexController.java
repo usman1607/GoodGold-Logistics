@@ -36,7 +36,7 @@ public class IndexController {
         return "/contact";
     }
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String index(Model model){
 
         return "/index";
@@ -52,8 +52,8 @@ public class IndexController {
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
     }
-    //https:/
-    @GetMapping("/goodgoldlogistics.herokuapp.com")
+
+    @GetMapping("//https://goodgoldlogistics.herokuapp.com")
     public String indexGgl(Model model){
 
         return "/index";
