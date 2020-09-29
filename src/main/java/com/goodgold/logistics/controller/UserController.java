@@ -82,7 +82,7 @@ public class UserController {
             u.setTitle("Seller");
 
             userRepository.save(u);
-            redirectAttributes.addAttribute("success","success");
+            redirectAttributes.addAttribute("succeed","You have successfully registered");
             return "redirect:/login";
         }
         return "redirect:/users/create";
@@ -161,6 +161,15 @@ public class UserController {
         }
 
         return "redirect:/users/changePass/"+username;
+    }
+
+    @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET)
+    public String removeUser(@PathVariable("id") long id, Model model) {
+
+        User user = userRepository.findById(id).get();
+
+        userRepository.delete(user);
+        return "redirect:/sellers/list";
     }
 
     @RequestMapping(value = "/staffs/list", method = RequestMethod.GET)

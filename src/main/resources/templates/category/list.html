@@ -138,7 +138,8 @@
                     <td th:text="${c.getId()}"></td>
                     <td th:text="${c.getName()}"></td>
                     <td><a th:href="@{/categories/edit/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
-                    <td><a th:href="@{/categories/delete/{id}(id=${c.getId()})}"><button class="btn-danger" name="button">Delete</button></a></td>
+                    <td><a th:href="@{/categories/delete/{id}(id=${c.getId()})}">
+                        <button class="btn-danger" onclick="return confirm('Are you sure you want to delete?');" name="button">Delete</button></a></td>
                 </tr>
             </table>
         </main>
