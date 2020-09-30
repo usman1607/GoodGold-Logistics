@@ -54,8 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/login*").permitAll()
 
-                //.antMatchers("/staffs/create").permitAll()
-                //.antMatchers("/staffs/add").permitAll()
+                .antMatchers("/staffs/create").hasRole("STAFF")
+                .antMatchers("/staffs/add").hasRole("STAFF")
+                .antMatchers("/staffs/list").hasRole("STAFF")
+                .antMatchers("/sellers/list").hasRole("STAFF")
+                .antMatchers("/roles/list").hasRole("STAFF")
+                .antMatchers("/categories/list").hasRole("STAFF")
+                .antMatchers("/products/list").hasRole("STAFF")
+                .antMatchers("/warehouses/list").hasRole("STAFF")
+                .antMatchers("/shipments/list").hasRole("STAFF")
 
                 .anyRequest().authenticated()
                 .and()

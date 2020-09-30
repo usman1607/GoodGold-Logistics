@@ -79,7 +79,9 @@ public class ProductController {
         shipmentRepository.save(s);
         productRepository.save(p);
 
-        return "redirect:/products/list";
+        String username = user.getUsername();
+
+        return "redirect:/products/myList/"+username;
     }
 
     @GetMapping("/products/details/{id}")

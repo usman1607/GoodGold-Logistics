@@ -129,7 +129,7 @@
                     <td th:text="${c.getQuantity()}"></td>
                     <td th:text="${c.getShipment().getStatus()}"></td>
                     <td><a th:href="@{/products/details/{id}(id=${c.getId()})}">
-                        <button class="btn-info" onclick="return confirm('Are you sure you want to delete?');" name="button">Details</button></a></td>
+                        <button class="btn-info" name="button">Details</button></a></td>
                 </tr>
             </table>
         </main>
