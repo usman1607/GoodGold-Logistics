@@ -116,24 +116,24 @@
             <div class="col-md-8 text-left userProfile h3 font-weight-normal">
                 <table class="table table-hover table-striped">
                     <tr>
-                        <td th:text="${user.getFirstName()}"></td>
-                        <td th:text="${user.getLastName()}"></td>
-                        <td th:text="${user.getJobTitle()}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.jobTitle}"></td>
                     </tr>
                     <tr>
-                        <td th:text="${user.getSex()}"></td>
-                        <td th:text="${user.getPhoneNo()}"></td>
-                        <td th:text="${user.getUsername()}"></td>
+                        <td th:text="${user.sex}"></td>
+                        <td th:text="${user.phoneNo}"></td>
+                        <td th:text="${user.username}"></td>
                     </tr>
                     <tr>
-                        <td th:text="${user.getAge()}+ 'years old'"> </td>
-                        <td th:text="${user.getCountry()}"></td>
-                        <td th:text="${user.getTitle()}"></td>
+                        <td th:text="${user.age}+ 'years old'"> </td>
+                        <td th:text="${user.country}"></td>
+                        <td th:text="${user.title}"></td>
                     </tr>
                     <tr>
-                        <td th:text="${user.getAddress()}"> </td>
-                        <td th:text="${user.getCity()}"></td>
-                        <td th:text="${user.getState()}"></td>
+                        <td th:text="${user.address}"> </td>
+                        <td th:text="${user.city}"></td>
+                        <td th:text="${user.state}"></td>
                     </tr>
                 </table>
             </div>
