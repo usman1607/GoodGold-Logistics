@@ -113,75 +113,75 @@
 <!--                    <div><span sec:authentication="principal.authorities">Roles</span></div>-->
                 </div>
             </div>
-<!--            <div class="col-md-8 text-left userProfile h3 font-weight-normal">-->
-<!--                <form th:action="" method="" th:object="${user}">-->
-<!--                    <div class="row col-12">-->
-<!--                        <div class="form-group col-6">-->
-<!--                            <label>First Name:</label>-->
-<!--                            <input type="text" id="firstName" th:field="*{firstName}" name="firstName" class="form-control" required>-->
-<!--                        </div>-->
-<!--                        <div class="form-group col-6">-->
-<!--                            <label>Last Name:</label>-->
-<!--                            <input type="text" id="lastName" th:field="*{lastName}" name="lastName" class="form-control" required>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="row col-12">-->
-<!--                        <div class="form-group col-4">-->
-<!--                            <label>Phone No:</label>-->
-<!--                            <input type="text" id="phoneNo" th:field="*{phoneNo}" name="phoneNo" class="form-control" required>-->
-<!--                        </div>-->
-<!--                        <div class="form-group col-8">-->
-<!--                            <label>Address:</label>-->
-<!--                            <input type="text" id="address" th:field="*{address}" name="address" class="form-control" required>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <div class="row col-12">-->
-<!--                        <div class="form-group col-4">-->
-<!--                            <label>City:</label>-->
-<!--                            <input type="text" id="city" th:field="*{city}" name="city" class="form-control" required>-->
-<!--                        </div>-->
-
-<!--                        <div class="form-group col-4">-->
-<!--                            <label>State:</label>-->
-<!--                            <input type="text" id="state" th:field="*{state}" name="state" class="form-control" required>-->
-<!--                        </div>-->
-
-<!--                        <div class="form-group col-4">-->
-<!--                            <label>Country:</label>-->
-<!--                            <input type="text" id="country" th:field="*{country}" name="country" class="form-control" required>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    -->
-<!--                </form>-->
-<!--            </div>-->
             <div class="col-md-8 text-left userProfile h3 font-weight-normal">
-                <form th:object="${user}">
-                <table class="table table-hover table-striped">
-                    <tr>
-                        <td th:text="*{firstName}"></td>
-                        <td th:text="*{lastName}"></td>
-                        <td th:text="*{jobTitle}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="*{sex}"></td>
-                        <td th:text="*{phoneNo}"></td>
-                        <td th:text="*{username}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="*{age}"> <span>years old</span></td>
-                        <td th:text="*{country}"></td>
-                        <td th:text="*{title}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="*{address}"> </td>
-                        <td th:text="*{city}"></td>
-                        <td th:text="*{state}"></td>
-                    </tr>
-                </table>
+                <form th:action="" method="" th:object="${user}">
+                    <div class="row col-12">
+                        <div class="form-group col-6">
+                            <label>First Name:</label>
+                            <input type="text" id="firstName" th:field="*{firstName}" name="firstName" class="form-control" required>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Last Name:</label>
+                            <input type="text" id="lastName" th:field="*{lastName}" name="lastName" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-4">
+                            <label>Phone No:</label>
+                            <input type="text" id="phoneNo" th:field="*{phoneNo}" name="phoneNo" class="form-control" required>
+                        </div>
+                        <div class="form-group col-8">
+                            <label>Address:</label>
+                            <input type="text" id="address" th:field="*{address}" name="address" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="row col-12">
+                        <div class="form-group col-4">
+                            <label>City:</label>
+                            <input type="text" id="city" th:field="*{city}" name="city" class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>State:</label>
+                            <input type="text" id="state" th:field="*{state}" name="state" class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-4">
+                            <label>Country:</label>
+                            <input type="text" id="country" th:field="*{country}" name="country" class="form-control" required>
+                        </div>
+                    </div>
+
                 </form>
             </div>
+<!--            <div class="col-md-8 text-left userProfile h3 font-weight-normal">-->
+<!--                <form th:object="${user}">-->
+<!--                <table class="table table-hover table-striped">-->
+<!--                    <tr>-->
+<!--                        <td th:text="*{firstName}"></td>-->
+<!--                        <td th:text="*{lastName}"></td>-->
+<!--                        <td th:text="*{jobTitle}"></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td th:text="*{sex}"></td>-->
+<!--                        <td th:text="*{phoneNo}"></td>-->
+<!--                        <td th:text="*{username}"></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td th:text="*{age}"> <span>years old</span></td>-->
+<!--                        <td th:text="*{country}"></td>-->
+<!--                        <td th:text="*{title}"></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td th:text="*{address}"> </td>-->
+<!--                        <td th:text="*{city}"></td>-->
+<!--                        <td th:text="*{state}"></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--                </form>-->
+<!--            </div>-->
 
         </main>
     </div>
