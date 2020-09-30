@@ -50,7 +50,7 @@ public class IndexController {
     @GetMapping("/admins/dashboard/{username}")
     public String admin(@PathVariable("username") String username, Model model){
         model.addAttribute("user", userRepository.findUserByUsername(username));
-        return "/admin/dashboard";
+        return "admin/dashboard";
     }
 
     @GetMapping("//https://goodgoldlogistics.herokuapp.com")
