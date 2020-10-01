@@ -115,7 +115,7 @@
             </div>
             <div class="card-body register-form">
 
-                <form th:action="@{/users/update}" method="post" th:object="${user}">
+                <form th:action="" method="post" th:object="${user}">
                     <input type="hidden" name="id" th:field="*{id}">
                     <div class="row col-12">
                         <div class="form-group col-4">
@@ -175,7 +175,7 @@
                         </div>
                     </div>
 
-<!--                    <button class="btn btn-primary btn-block" type="submit">Update</button>-->
+                    <button class="btn btn-primary btn-block" type="submit">Update</button>
                 </form>
             </div>
 <!--            <div class="col-md-8 text-left userProfile h3 font-weight-normal">-->
