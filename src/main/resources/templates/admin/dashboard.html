@@ -105,24 +105,12 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                        <div><h3>Welcome, <span sec:authentication="name">Username</span></h3></div>
+                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>
                     </div>
 
                 </div>
             </div>
-
-            <!--    <div class="p-2 add-role" style="border-width: 1px; border-style: solid; color: #0b2e13">-->
-            <!--        <h4>Edit Seller Details</h4>-->
-            <!--        <form method="post" th:action="${'/sellers/update'}">-->
-            <!--            <div class="form-group">-->
-            <!--                <label>First Name</label>-->
-            <!--                <input type="text" class="form-control mw-100" name="firstName" required>-->
-            <!--            </div>-->
-            <!--            <div >-->
-            <!--                <button class="btn-outline-success" name="button">Edit Seller</button>-->
-            <!--            </div>-->
-            <!--        </form>-->
-            <!--    </div>-->
 
         </main>
     </div>

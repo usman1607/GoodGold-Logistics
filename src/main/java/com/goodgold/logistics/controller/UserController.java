@@ -100,6 +100,12 @@ public class UserController {
         return "user/SellersList";
     }
 
+    @RequestMapping(value = "/myPage/page", method = RequestMethod.GET)
+    public String myPage(){
+//        model.addAttribute("sellers", userRepository.findUsersByTitleEquals("Seller"));
+        return "admin/dashboard";
+    }
+
     @RequestMapping(value = "/users/details/{id}", method = RequestMethod.GET)
     public String sellerDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userRepository.findById(id).get());

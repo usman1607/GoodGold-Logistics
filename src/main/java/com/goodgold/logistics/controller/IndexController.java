@@ -47,12 +47,12 @@ public class IndexController {
         return "/login";
     }
 
-    @GetMapping("/admins/dashboard")
+//    @GetMapping("/admins/dashboard")
 //    @RequestMapping(value = "/admins/dashboard/{username}", method = RequestMethod.GET)
-    public String admin(){
+//    public String admin(){
 //        model.addAttribute("user", userRepository.findUserByUsername(username));
-        return "/admin/dashboard";
-    }
+//        return "/admin/dashboard";
+//    }
 
 //    @GetMapping("/index")
 //    public String indexGgl(Model model){
