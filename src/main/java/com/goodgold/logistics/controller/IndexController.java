@@ -47,7 +47,8 @@ public class IndexController {
         return "/login";
     }
 
-    @GetMapping("/admins/dashboard/{username}")
+//    @GetMapping("/admins/dashboard/{username}")
+    @RequestMapping(value = "/admins/dashboard/{username}", method = RequestMethod.GET)
     public String admin(@PathVariable("username") String username, Model model){
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
