@@ -36,11 +36,11 @@ public class IndexController {
         return "/contact";
     }
 
-//    @GetMapping("/index")
-//    public String index(Model model){
-//
-//        return "/index";
-//    }
+    @GetMapping("/")
+    public String index(Model model){
+
+        return "/index";
+    }
 
     @GetMapping("/login")
     public String login(){
@@ -54,9 +54,9 @@ public class IndexController {
         return "/admin/dashboard";
     }
 
-    @GetMapping("/index")
-    public String indexGgl(Model model){
-
-        return "/index";
-    }
+//    @GetMapping("/index")
+//    public String indexGgl(Model model){
+//
+//        return "/index";
+//    }
 }
