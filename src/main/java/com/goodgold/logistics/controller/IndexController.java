@@ -36,11 +36,11 @@ public class IndexController {
         return "/contact";
     }
 
-    @GetMapping("/index")
-    public String index(Model model){
-
-        return "/index";
-    }
+//    @GetMapping("/index")
+//    public String index(Model model){
+//
+//        return "/index";
+//    }
 
     @GetMapping("/login")
     public String login(){
@@ -48,13 +48,13 @@ public class IndexController {
     }
 
 //    @GetMapping("/admins/dashboard/{username}")
-    @RequestMapping(value = "/admins/dashboard/{username}", method = RequestMethod.POST)
+    @RequestMapping(value = "/admins/dashboard/{username}", method = RequestMethod.GET)
     public String admin(@PathVariable("username") String username, Model model){
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
     }
 
-    @GetMapping("//https://goodgoldlogistics.herokuapp.com")
+    @GetMapping("/index")
     public String indexGgl(Model model){
 
         return "/index";
