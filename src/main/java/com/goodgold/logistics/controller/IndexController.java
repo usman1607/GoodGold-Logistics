@@ -47,9 +47,9 @@ public class IndexController {
         return "/login";
     }
 
-    @GetMapping("/admins/dashboard/")
+    @GetMapping("/admins/dashboard")
 //    @RequestMapping(value = "/admins/dashboard/{username}", method = RequestMethod.GET)
-    public String admin( Model model){
+    public String admin(){
 //        model.addAttribute("user", userRepository.findUserByUsername(username));
         return "/admin/dashboard";
     }
