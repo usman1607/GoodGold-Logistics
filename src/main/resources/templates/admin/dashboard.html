@@ -14,7 +14,7 @@
             <div class="sidebar-sticky pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/admins/dashboard/{username}(username=${#request.remoteUser})}">
+                        <a class="nav-link active" th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
                             <i class="fa fa-user"></i>My Dashboard
                         </a>
                     </li>
@@ -111,32 +111,31 @@
 
                 </div>
             </div>
-
+            <div class="col-md-8 text-left userProfile h3 font-weight-normal">
+                <table class="table table-hover table-striped">
+                    <tr>
+                        <td th:text="${user.getFirstName()}"></td>
+                        <td th:text="${user.getLastName()}"></td>
+                        <td th:text="${user.getJobTitle()}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${user.getSex()}"></td>
+                        <td th:text="${user.getPhoneNo()}"></td>
+                        <td th:text="${user.getUsername()}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${user.getAge()}+ 'years old'"> </td>
+                        <td th:text="${user.getCountry()}"></td>
+                        <td th:text="${user.getTitle()}"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${user.getAddress()}"> </td>
+                        <td th:text="${user.getCity()}"></td>
+                        <td th:text="${user.getState()}"></td>
+                    </tr>
+                </table>
+            </div>
         </main>
-        <div class="col-md-8 text-left userProfile h3 font-weight-normal">
-            <table class="table table-hover table-striped">
-                <tr>
-                    <td th:text="${user.getFirstName()}"></td>
-                    <td th:text="${user.getLastName()}"></td>
-                    <td th:text="${user.getJobTitle()}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${user.getSex()}"></td>
-                    <td th:text="${user.getPhoneNo()}"></td>
-                    <td th:text="${user.getUsername()}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${user.getAge()}+ 'years old'"> </td>
-                    <td th:text="${user.getCountry()}"></td>
-                    <td th:text="${user.getTitle()}"></td>
-                </tr>
-                <tr>
-                    <td th:text="${user.getAddress()}"> </td>
-                    <td th:text="${user.getCity()}"></td>
-                    <td th:text="${user.getState()}"></td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
 </body>
