@@ -71,7 +71,7 @@
                             <div class="dropdown-content-body">
                                 <ul>
                                     <li>
-                                        <a th:href="@{/myPage/page}">
+                                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
                                             <i class="fa fa-user"></i>My Page
                                         </a>
                                     </li>

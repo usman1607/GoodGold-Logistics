@@ -113,6 +113,30 @@
             </div>
 
         </main>
+        <div class="col-md-8 text-left userProfile h3 font-weight-normal">
+            <table class="table table-hover table-striped">
+                <tr>
+                    <td th:text="${user.getFirstName()}"></td>
+                    <td th:text="${user.getLastName()}"></td>
+                    <td th:text="${user.getJobTitle()}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${user.getSex()}"></td>
+                    <td th:text="${user.getPhoneNo()}"></td>
+                    <td th:text="${user.getUsername()}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${user.getAge()}+ 'years old'"> </td>
+                    <td th:text="${user.getCountry()}"></td>
+                    <td th:text="${user.getTitle()}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${user.getAddress()}"> </td>
+                    <td th:text="${user.getCity()}"></td>
+                    <td th:text="${user.getState()}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 </body>
