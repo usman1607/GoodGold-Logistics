@@ -8,29 +8,6 @@
 
 <body layout:fragment="content" class="margin-tp">
 
-    <div class="col-md-8 text-left userProfile h3 font-weight-normal">
-        <table class="table table-hover table-striped" th:object="${user}">
-            <tr>
-                <td th:text="*{firstName}"></td>
-                <td th:text="*{lastName}"></td>
-                <td th:text="*{jobTitle}"></td>
-            </tr>
-            <tr>
-                <td th:text="*{sex}"></td>
-                <td th:text="*{phoneNo}"></td>
-                <td th:text="*{username}"></td>
-            </tr>
-            <tr>
-                <td th:text="*{age}"> <span>years old</span></td>
-                <td th:text="*{country}"></td>
-                <td th:text="*{title}"></td>
-            </tr>
-            <tr>
-                <td th:text="*{address}"> </td>
-                <td th:text="*{city}"></td>
-                <td th:text="*{state}"></td>
-            </tr>
-        </table>
-    </div>
+    <div><h3>Welcome, to GOOD GOLD Logistics...</h3></div>
 </body>
 </html>
