@@ -23,12 +23,12 @@
                     </div>
 <!--                    <div th:if="${param.succeed}" id="succeed" class="alert alert-info text-success"></div>-->
                     <form th:action="@{/users/register}" method="post" onsubmit="congrats()">
-                            <div class="row col-12">
-                                <div class="form-group col-6">
+                            <div class="row">
+                                <div class="form-group col-md-6">
                                     <label>First Name:</label>
                                     <input type="text" id="firstName" name="firstName" class="form-control" required>
                                 </div>
-                                <div class="form-group col-6">
+                                <div class="form-group col-md-6">
                                     <label>Last Name:</label>
                                     <input type="text" id="lastName" name="lastName" class="form-control" required>
                                 </div>
@@ -36,13 +36,13 @@
                             <div th:if="${param.ageError}">
                                 <span class="text-danger" th:text="${param.ageError}"></span>
                             </div>
-                            <div class="row col-12">
-                                <div class="form-group col-2">
+                            <div class="row">
+                                <div class="form-group col-md-2">
                                     <label>Age:</label>
                                     <input type="number" id="age" name="age" class="form-control" required>
                                 </div>
 
-                                <div class="form-group col-3">
+                                <div class="form-group col-md-3">
                                     <label>Gender</label>
                                     <select name="sex" id="sex" class="form-control">
                                         <option value="">Select</option>
@@ -52,24 +52,24 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-7">
+                                <div class="form-group col-md-7">
                                     <label>Address:</label>
                                     <input type="text" id="address" name="address" class="form-control" required>
                                 </div>
                             </div>
 
-                            <div class="row col-12">
-                                <div class="form-group col-4">
+                            <div class="row">
+                                <div class="form-group col-md-4">
                                     <label>City:</label>
                                     <input type="text" id="city" name="city" class="form-control" required>
                                 </div>
 
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4">
                                     <label>State:</label>
                                     <input type="text" id="state" name="state" class="form-control" required>
                                 </div>
 
-                                <div class="form-group col-4">
+                                <div class="form-group col-md-4">
                                     <label>Country:</label>
                                     <input type="text" id="country" name="country" class="form-control" required>
                                 </div>
@@ -78,13 +78,13 @@
                             <div th:if="${param.emailError}">
                                 <span class="text-danger" th:text="${param.emailError}"></span>
                             </div>
-                            <div class="row col-12">
-                                <div class="form-group col-6">
+                            <div class="row">
+                                <div class="form-group col-md-6">
                                     <label>Phone No:</label>
                                     <input type="text" id="phoneNo" name="phoneNo" class="form-control" required>
                                 </div>
 
-                                <div class="form-group col-6">
+                                <div class="form-group col-md-6">
                                     <label>Email:</label>
                                     <input type="email" id="userName" name="userName" class="form-control" required>
                                 </div>
@@ -93,13 +93,13 @@
                             <div th:if="${param.passError}">
                                 <span class="text-danger" th:text="${param.passError}"></span>
                             </div>
-                            <div class="row col-12">
-                                <div class="form-group col-6">
+                            <div class="row">
+                                <div class="form-group col-md-6">
                                     <label>Create Password:</label>
                                     <input type="password" name="password" id="password" class="form-control" required>
                                 </div>
 
-                                <div class="form-group col-6">
+                                <div class="form-group col-md-6">
                                     <label>Confirm Password:</label>
                                     <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
                                 </div>
