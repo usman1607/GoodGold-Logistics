@@ -106,10 +106,10 @@ public class UserController {
         return "admin/dashboard";
     }
 
-    @RequestMapping(value = "/users/details/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/u_details/{id}", method = RequestMethod.GET)
     public String sellerDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userRepository.findById(id).get());
-        return "/user/sellerDetails";
+        return "/user/userDetails";
     }
 
     @RequestMapping(value = "/users/profile/{username}", method = RequestMethod.GET)
@@ -134,7 +134,7 @@ public class UserController {
         userRepository.save(u);
         String username = u.getUsername();
 
-        return "redirect:/admins/dashboard/"+username;
+        return "redirect:/myPage/page/"+username;
     }
 
     @GetMapping("/users/changePass/{username}")
@@ -163,7 +163,7 @@ public class UserController {
         else{
             u.setPassword(old);
             userRepository.save(u);
-            return "redirect:/admins/dashboard/"+username;
+            return "redirect:/myPage/page/"+username;
         }
 
         return "redirect:/users/changePass/"+username;
