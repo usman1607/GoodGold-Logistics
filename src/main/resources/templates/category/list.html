@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout2}">
 <head>
-    <title>User Profile Page</title>
+    <title>All Categories</title>
 </head>
 
 <body layout:fragment="content">
@@ -35,7 +35,7 @@
             <td th:text="${c.getName()}"></td>
             <td><a th:href="@{/categories/edit/{id}(id=${c.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>
             <td><a th:href="@{/categories/delete/{id}(id=${c.getId()})}">
-                <button class="btn-danger" onclick="return confirm('Are you sure you want to delete?');" name="button">Delete</button></a></td>
+                <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');" name="button">Delete</button></a></td>
         </tr>
     </table>
 

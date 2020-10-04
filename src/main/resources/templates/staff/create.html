@@ -1,224 +1,112 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      layout:decorate="~{layout2}">
 <head>
     <title>Create Staff</title>
 </head>
 
-<body layout:fragment="content" class="margin-tp">
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/admins/dashboard/{username}(username=${#request.remoteUser})}">
-                            <i class="fa fa-user"></i>My Dashboard
-                        </a>
-                    </li>
-                    <div sec:authorize="hasRole('STAFF')">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/sellers/list}">
-                                <i class="fa fa-clipboard-list"></i>All Sellers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/staffs/list}">
-                                <i class="fa fa-clipboard-list"></i>All Staff
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/staffs/create}">
-                                <i class="fa fa-plus-circle"></i>Add New Staff
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/roles/list}">
-                                <i class="fa fa-clipboard-list"></i>All Roles
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/categories/list}">
-                                <i class="fa fa-clipboard-list"></i>All Categories
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/list}">
-                                <i class="fa fa-clipboard-list"></i>All Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/warehouses/list}">
-                                <i class="fa fa-clipboard-list"></i>All Warehouses
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/shipments/list}">
-                                <i class="fa fa-ship"></i>All Shipments
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-edit"></i>Edit My Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-key"></i>Change Password
-                            </a>
-                        </li>
-                    </div>
-
-                    <div sec:authorize="hasRole('SELLER')">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/myList/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-clipboard-list"></i>All My Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-plus-circle"></i>Add New Product
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-edit"></i>Edit My Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-key"></i>Change Password
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/myPaymentStatus/details/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-question-circle"></i>My Status
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-<!--                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
-                    </div>
-
+<body layout:fragment="content">
+    <div class="p-2 add-staff mb-3 createForm">
+        <h4>Create Staff Account</h4>
+        <div th:if="${param.error}">
+            <span class="text-danger" th:text="${param.error}"></span>
+        </div>
+        <form th:action="@{/staffs/add}" method="post" >
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>First Name:</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Job Title:</label>
+                    <input type="text" id="jobTitle" name="jobTitle" class="form-control" required>
                 </div>
             </div>
 
-            <div class="p-2 add-staff mb-3 createForm">
-                <h4>Create Staff Account</h4>
-                <div th:if="${param.error}">
-                    <span class="text-danger" th:text="${param.error}"></span>
+            <div class="row">
+                <div th:if="${param.ageError}">
+                    <span class="text-danger" th:text="${param.ageError}"></span>
                 </div>
-                <form th:action="@{/staffs/add}" method="post" >
-                    <div class="row col-12">
-                        <div class="form-group col-4">
-                            <label>First Name:</label>
-                            <input type="text" id="firstName" name="firstName" class="form-control" required>
-                        </div>
-                        <div class="form-group col-4">
-                            <label>Last Name:</label>
-                            <input type="text" id="lastName" name="lastName" class="form-control" required>
-                        </div>
-                        <div class="form-group col-4">
-                            <label>Job Title:</label>
-                            <input type="text" id="jobTitle" name="jobTitle" class="form-control" required>
-                        </div>
-                    </div>
+                <div class="form-group col-md-2">
+                    <label>Age:</label>
+                    <input type="number" id="age" name="age" class="form-control" required>
+                </div>
 
-                    <div class="row col-12">
-                        <div th:if="${param.ageError}">
-                            <span class="text-danger" th:text="${param.ageError}"></span>
-                        </div>
-                        <div class="form-group col-2">
-                            <label>Age:</label>
-                            <input type="number" id="age" name="age" class="form-control" required>
-                        </div>
+                <div class="form-group col-md-3">
+                    <label>Gender</label>
+                    <select name="sex" id="sex" class="form-control">
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Rather not say">Rather not say</option>
+                    </select>
+                </div>
 
-                        <div class="form-group col-3">
-                            <label>Gender</label>
-                            <select name="sex" id="sex" class="form-control">
-                                <option value="">Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Rather not say">Rather not say</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-7">
-                            <label>Address:</label>
-                            <input type="text" id="address" name="address" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row col-12">
-                        <div class="form-group col-4">
-                            <label>City:</label>
-                            <input type="text" id="city" name="city" class="form-control" required>
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label>State:</label>
-                            <input type="text" id="state" name="state" class="form-control" required>
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label>Country:</label>
-                            <input type="text" id="country" name="country" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row col-12">
-                        <div class="form-group col-6">
-                            <label>Phone No:</label>
-                            <input type="text" id="phoneNo" name="phoneNo" class="form-control" required>
-                        </div>
-
-                        <div th:if="${param.emailError}">
-                            <span class="text-danger" th:text="${param.emailError}"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label>Email:</label>
-                            <input type="email" id="userName" name="userName" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="row col-12">
-                        <div th:if="${param.passError}">
-                            <span class="text-danger" th:text="${param.passError}"></span>
-                        </div>
-                        <div class="form-group col-6">
-                            <label>Create Password:</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
-                        </div>
-
-                        <div class="form-group col-6">
-                            <label>Confirm Password:</label>
-                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
-                        </div>
-                    </div>
-
-
-                    <lable>I accept all the <a href="#">term and conditions</a></lable>
-                    <label>
-                        <input type="checkbox" value="yes" required> Yes
-                    </label>
-
-                    <button class="btn btn-primary btn-block" type="submit">Register</button>
-                </form>
+                <div class="form-group col-md-7">
+                    <label>Address:</label>
+                    <input type="text" id="address" name="address" class="form-control" required>
+                </div>
             </div>
-            <p>.</p>
-            <p>.</p>
-            <p>.</p>
 
-        </main>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>City:</label>
+                    <input type="text" id="city" name="city" class="form-control" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>State:</label>
+                    <input type="text" id="state" name="state" class="form-control" required>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label>Country:</label>
+                    <input type="text" id="country" name="country" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label>Phone No:</label>
+                    <input type="text" id="phoneNo" name="phoneNo" class="form-control" required>
+                </div>
+
+                <div th:if="${param.emailError}">
+                    <span class="text-danger" th:text="${param.emailError}"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Email:</label>
+                    <input type="email" id="userName" name="userName" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div th:if="${param.passError}">
+                    <span class="text-danger" th:text="${param.passError}"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Create Password:</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Confirm Password:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                </div>
+            </div>
+
+<!--            <lable>I accept all the <a href="#">term and conditions</a></lable>-->
+<!--            <label>-->
+<!--                <input type="checkbox" value="yes" required> Yes-->
+<!--            </label>-->
+
+            <button class="btn btn-primary btn-block" type="submit">Create Staff</button>
+        </form>
     </div>
-</div>
 </body>
 </html>
