@@ -1,142 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+      layout:decorate="~{layout2}">
 <head>
-    <title>List of Sellers</title>
+    <title>Warehouse Details</title>
 </head>
 
 <body layout:fragment="content" class="margin-tp">
-<div class="container-fluid">
-    <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
-                            <i class="fa fa-user"></i>My Dashboard
-                        </a>
-                    </li>
-                    <div sec:authorize="hasRole('STAFF')">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/sellers/list}">
-                                <i class="fa fa-clipboard-list"></i>All Sellers
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/staffs/list}">
-                                <i class="fa fa-clipboard-list"></i>All Staff
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/staffs/create}">
-                                <i class="fa fa-plus-circle"></i>Add New Staff
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/roles/list}">
-                                <i class="fa fa-clipboard-list"></i>All Roles
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/categories/list}">
-                                <i class="fa fa-clipboard-list"></i>All Categories
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/list}">
-                                <i class="fa fa-clipboard-list"></i>All Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/warehouses/list}">
-                                <i class="fa fa-clipboard-list"></i>All Warehouses
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/shipments/list}">
-                                <i class="fa fa-ship"></i>All Shipments
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-edit"></i>Edit My Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-key"></i>Change Password
-                            </a>
-                        </li>
-                    </div>
-
-                    <div sec:authorize="hasRole('SELLER')">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/myList/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-clipboard-list"></i>All My Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-plus-circle"></i>Add New Product
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-edit"></i>Edit My Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-key"></i>Change Password
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/myPaymentStatus/details/{username}(username=${#request.remoteUser})}">
-                                <i class="fa fa-question-circle"></i>My Status
-                            </a>
-                        </li>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <div><h3>Welcome, <span sec:authentication="name">Username</span></h3></div>
-                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-md-8 text-left userProfile h3 font-weight-normal">
-                <table class="table table-hover table-striped">
-                    <tr>
-                        <td th:text="${user.getFirstName()}"></td>
-                        <td th:text="${user.getLastName()}"></td>
-                        <td th:text="${user.getJobTitle()}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="${user.getSex()}"></td>
-                        <td th:text="${user.getPhoneNo()}"></td>
-                        <td th:text="${user.getUsername()}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="${user.getAge()}+ 'years old'"> </td>
-                        <td th:text="${user.getCountry()}"></td>
-                        <td th:text="${user.getTitle()}"></td>
-                    </tr>
-                    <tr>
-                        <td th:text="${user.getAddress()}"> </td>
-                        <td th:text="${user.getCity()}"></td>
-                        <td th:text="${user.getState()}"></td>
-                    </tr>
-                </table>
-            </div>
-        </main>
+    <div class="col-md-8 text-left userProfile h3 font-weight-normal">
+        <table class="table table-hover table-striped">
+            <tr>
+                <td th:text="${user.getFirstName()}"></td>
+                <td th:text="${user.getLastName()}"></td>
+                <td th:text="${user.getJobTitle()}"></td>
+            </tr>
+            <tr>
+                <td th:text="${user.getSex()}"></td>
+                <td th:text="${user.getPhoneNo()}"></td>
+                <td th:text="${user.getUsername()}"></td>
+            </tr>
+            <tr>
+                <td th:text="${user.getAge()}+ 'years old'"> </td>
+                <td th:text="${user.getCountry()}"></td>
+                <td th:text="${user.getTitle()}"></td>
+            </tr>
+            <tr>
+                <td th:text="${user.getAddress()}"> </td>
+                <td th:text="${user.getCity()}"></td>
+                <td th:text="${user.getState()}"></td>
+            </tr>
+        </table>
     </div>
-</div>
 </body>
 </html>
