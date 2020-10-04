@@ -21,14 +21,14 @@
 
 <body>
 <nav class="navbar fixed-top navbar-dark sticky-top bg-success flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#"><img style="width: 35%" th:src="@{/images/logo1.png}"></a>
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" th:href="@{/}"><img style="width: 35%" th:src="@{/images/logo1.png}"></a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
+            <a class="nav-link" th:href="@{/logout}">Sign out</a>
         </li>
     </ul>
 </nav>
@@ -39,6 +39,9 @@
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
             <div class="sidebar-sticky  pt-3">
                 <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" th:href="@{/}"><i class="fa fa-home"></i>Home</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
                             <i class="fa fa-user"></i>My Dashboard
