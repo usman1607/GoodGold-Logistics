@@ -15,6 +15,7 @@
     <link rel="stylesheet" th:href="@{/css/myCss.css}">
     <link rel="stylesheet" th:href="@{/css/signin.css}">
     <link rel="stylesheet" th:href="@{/fa/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 
 </head>
 
@@ -112,7 +113,7 @@
 <div class="container-fluid">
     <div class="row">
         <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="sidebar-sticky pt-3">
+            <div class="sidebar-sticky  pt-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
@@ -244,6 +245,7 @@
 <script th:src="@{/js/bootstrap.js}"></script>
 <script th:src="@{/js/sweetalert2.all.min.js}"></script>
 <script th:src="@{/js/myJsFile.js}"></script>
+<script th:src="@{/js/dashboard.js}"></script>
 
 <th:block layout:fragment="optional" />
 
