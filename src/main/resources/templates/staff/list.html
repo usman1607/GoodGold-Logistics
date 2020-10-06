@@ -31,7 +31,7 @@
             <td th:text="${s.getCountry()}"></td>
             <td th:text="${s.getJobTitle()}"></td>
             <td><a th:href="@{/staffs/assignRole/{id}(id=${s.getId()})}"><button class="btn btn-outline-success" name="button">Assign Role</button></a></td>
-            <td><a th:href="@{/users/u_details/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
+            <td><a th:href="@{/users/details/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
 <!--                    <td><a th:href="@{/staffs/edit/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>-->
         </tr>
     </table>
