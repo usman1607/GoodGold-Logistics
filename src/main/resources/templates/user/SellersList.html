@@ -25,10 +25,11 @@
         <caption class="table-head">LIST OF All SELLERS</caption>
         <tr>
             <th>ID</th>
-            <th>FIRST NAME</th>
-            <th>LAST NAME</th>
+            <th>NAME</th>
+            <th>SEX</th>
             <th>EMAIL</th>
             <th>PHONE NO</th>
+            <td>STATE</td>
             <th>COUNTRY</th>
             <th>PRODUCTS</th>
             <th>DETAILS</th>
@@ -37,10 +38,11 @@
         </tr>
         <tr th:each="s : *{sellers}">
             <td th:text="${s.getId()}"></td>
-            <td th:text="${s.getFirstName()}"></td>
-            <td th:text="${s.getLastName()}"></td>
+            <td th:text="${s.getFirstName()}+' '+${s.getLastName()}"></td>
+            <td th:text="${s.getSex()}"></td>
             <td th:text="${s.getUsername()}"></td>
             <td th:text="${s.getPhoneNo()}"></td>
+            <td th:text="${s.getState()}"></td>
             <td th:text="${s.getCountry()}"></td>
             <td><a th:href="@{/users/products/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Products</button></a></td>
             <td><a th:href="@{/users/details/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
