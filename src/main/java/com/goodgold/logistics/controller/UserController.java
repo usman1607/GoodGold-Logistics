@@ -89,9 +89,9 @@ public class UserController {
         return "redirect:/users/create";
     }
 
-    @RequestMapping(value = "/users/list", method = RequestMethod.GET)
-    public String users(Model model){
-        model.addAttribute("users", userRepository.findAll());
+    @RequestMapping(value = "/users/list/{id}", method = RequestMethod.GET)
+    public String users(@PathVariable("id") long id, Model model){
+        model.addAttribute("user", userRepository.findById(id).get());
         return "user/list";
     }
 

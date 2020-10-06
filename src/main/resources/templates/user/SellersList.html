@@ -45,7 +45,7 @@
             <td th:text="${s.getState()}"></td>
             <td th:text="${s.getCountry()}"></td>
             <td><a th:href="@{/users/products/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Products</button></a></td>
-            <td><a th:href="@{/users/details/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
+            <td><a th:href="@{/users/list/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
 <!--                    <td><a th:href="@{/users/edit/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>-->
             <td><a th:href="@{/users/delete/{id}(id=${s.getId()})}">
                 <button class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?');" name="button">Delete</button></a></td>
