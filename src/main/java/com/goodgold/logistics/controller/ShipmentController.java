@@ -70,7 +70,7 @@ public class ShipmentController {
     }
 
     @RequestMapping(value = "/shipments/update", method = RequestMethod.POST)
-    public String updateShipment(Model model, @RequestParam long id, @RequestParam String code, @RequestParam String status, RegisterShipmentModel registerShipmentModel) throws ParseException {
+    public String updateShipment(Model model, @RequestParam long id, @RequestParam String status, @RequestParam String actualDeliveryDate) throws ParseException {
 
         Shipment s= shipmentRepository.findById(id).get();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
@@ -83,7 +83,7 @@ public class ShipmentController {
 //        s.setExpectedDeliveryDate(EDD);
 //        s.setShippingLocation(registerShipmentModel.getShippingLocation());
         s.setStatus(status);
-        Date ADDate = formatter.parse(registerShipmentModel.getActualDeliveryDate());
+        Date ADDate = formatter.parse(actualDeliveryDate);
         s.setActualDeliveryDate(ADDate);
 
         shipmentRepository.save(s);
