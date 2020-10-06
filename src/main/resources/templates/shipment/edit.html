@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Shipment</title>
 </head>
-<body>
 
+<body layout:fragment="content">
+<div class="p-2 add-staff createForm" >
+    <h4>Add New Product</h4>
+    <form method="post" th:action="${'/shipments/update'}" th:object="${shipment}">
+        <input type="hidden" name="id" th:field="*{id}">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Shipping Id:</label>
+                <input type="text" class="form-control" th:field="*{id}" readonly>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Tracking No.:</label>
+                <input type="text" class="form-control" th:field="${shipment.getTrackingNo()}" name="trackingNo" readonly>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Shipping from where?</label>
+                <input type="text" class="form-control" th:field="${shipment.getShippingLocation()}" name="shippingLocation" readonly>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Shipping To:</label>
+                <input type="text" class="form-control" th:field="${shipment.getWarehouse().getCode()}" name="warehouseCode" readonly>
+            </div>
+            <div class="form-group col-md-4" >
+                <label>New Status</label>
+                <select class="form-control" name="status">
+                    <option value="">--Select--</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="In Customs' Custody">In Customs' Custody</option>
+                    <option value="In Stock">In Stock</option>
+                    <option value="All Sold">All Sold</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Shipping Date:</label>
+                <input type="text" th:field="${shipment.getShippingDate()}" class="form-control mw-100" name="shippingDate" readonly>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>EDD</label>
+                <input type="text" th:field="${shipment.getExpectedDeliveryDate()}" class="form-control mw-100" name="expectedDeliveryDate" readonly>
+            </div>
+            <div class="form-group col-md-4">
+                <label>ADD</label>
+                <input type="datetime-local" class="form-control mw-100" name="actualDeliveryDate">
+            </div>
+        </div>
+
+        <div>
+            <button class="btn-outline-success" name="button">Edit Shipment</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

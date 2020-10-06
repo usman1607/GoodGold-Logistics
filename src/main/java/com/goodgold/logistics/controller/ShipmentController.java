@@ -75,14 +75,14 @@ public class ShipmentController {
         Shipment s= shipmentRepository.findById(id).get();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 
-        Warehouse w = warehouseRepository.findWarehouseByCode(code);
-        s.setWarehouse(w);
-        s.setShippingLocation(registerShipmentModel.getShippingLocation());
+//        Warehouse w = warehouseRepository.findWarehouseByCode(code);
+//        s.setWarehouse(w);
+//        Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
+//        Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
+//        s.setShippingDate(shipDate);
+//        s.setExpectedDeliveryDate(EDD);
+//        s.setShippingLocation(registerShipmentModel.getShippingLocation());
         s.setStatus(status);
-        Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
-        Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
-        s.setShippingDate(shipDate);
-        s.setExpectedDeliveryDate(EDD);
         Date ADDate = formatter.parse(registerShipmentModel.getActualDeliveryDate());
         s.setActualDeliveryDate(ADDate);
 
