@@ -4,6 +4,7 @@ import com.goodgold.logistics.model.Category;
 import com.goodgold.logistics.model.Shipment;
 import com.goodgold.logistics.model.Warehouse;
 import com.goodgold.logistics.model.viewmodels.RegisterShipmentModel;
+import com.goodgold.logistics.repository.ProductRepository;
 import com.goodgold.logistics.repository.ShipmentRepository;
 import com.goodgold.logistics.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,13 @@ public class ShipmentController {
     ShipmentRepository shipmentRepository;
     final
     WarehouseRepository warehouseRepository;
+    final
+    ProductRepository productRepository;
 
-    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository) {
+    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, ProductRepository productRepository) {
         this.shipmentRepository = shipmentRepository;
         this.warehouseRepository = warehouseRepository;
+        this.productRepository = productRepository;
     }
 
     @RequestMapping(value = "/shipments/list", method = RequestMethod.GET)
@@ -37,6 +41,7 @@ public class ShipmentController {
     @GetMapping("/shipments/details/{id}")
     public String shipmentDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("shipment", shipmentRepository.findById(id).get());
+        model.addAttribute("product", productRepository.findProductByShipmentId(id));
         return "shipment/details";
     }
 
