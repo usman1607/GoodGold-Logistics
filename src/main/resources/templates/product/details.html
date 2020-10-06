@@ -29,7 +29,11 @@
         </tr>
         <tr>
             <td>SHIPMENT STATUS</td>
-            <td th:text="${product.getShipment().getStatus()}"></td>
+            <td th:text="${product.getShipment().getStatus()}">
+                <a th:href="@{/shipments/details/{id}(id=${product.getShipment().getId()})}">
+                    <button class="btn btn-sm btn-info" name="button">more</button>
+                </a>
+            </td>
         </tr>
         <tr>
             <td>QUANTITY</td>

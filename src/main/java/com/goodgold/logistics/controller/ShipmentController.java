@@ -41,7 +41,7 @@ public class ShipmentController {
     @GetMapping("/shipments/details/{id}")
     public String shipmentDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("shipment", shipmentRepository.findById(id).get());
-        model.addAttribute("product", productRepository.findProductByShipmentId(id));
+//        model.addAttribute("product", productRepository.findProductByShipmentId(id));
         return "shipment/details";
     }
 

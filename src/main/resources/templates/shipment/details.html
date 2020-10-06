@@ -15,10 +15,10 @@
             <td>ID</td>
             <td th:text="${shipment.getId()}"></td>
         </tr>
-        <tr>
-            <td>SHIPPED BY: </td>
-            <td th:text="${product.getUser().getFirstName()}+' '+${product.getUser().getLastName()}"></td>
-        </tr>
+<!--        <tr>-->
+<!--            <td>SHIPPED BY:</td>-->
+<!--            <td th:text="${product.getUser().getFirstName()}+' '+${product.getUser().getLastName()}"></td>-->
+<!--        </tr>-->
         <tr>
             <td>SHIPPING FROM:</td>
             <td th:text="${shipment.getShippingLocation()}"></td>
