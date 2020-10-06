@@ -110,7 +110,7 @@ public class UserController {
     @RequestMapping(value = "/users/fullDetails/{id}", method = RequestMethod.GET)
     public String sellerDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userRepository.findById(id).get());
-        return "/user/userDetails";
+        return "/user/details";
     }
 
     @RequestMapping(value = "/users/profile/{username}", method = RequestMethod.GET)
