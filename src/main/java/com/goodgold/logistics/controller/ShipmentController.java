@@ -52,10 +52,14 @@ public class ShipmentController {
     }
 
     @RequestMapping(value = "/shipments/newStatus", method = RequestMethod.POST)
-    public String updateStatus(Model model, @RequestParam long id, @RequestParam String newStatus) {
+    public String updateStatus(Model model, @RequestParam long id, @RequestParam String newStatus, @RequestParam String actualDeliveryDate) throws ParseException {
 
         Shipment s = shipmentRepository.findById(id).get();
         s.setStatus(newStatus);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+        Date ADDate = formatter.parse(actualDeliveryDate);
+        s.setActualDeliveryDate(ADDate);
 
         shipmentRepository.save(s);
 
