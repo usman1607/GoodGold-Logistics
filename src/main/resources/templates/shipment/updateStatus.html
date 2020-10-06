@@ -9,7 +9,7 @@
 <body layout:fragment="content">
     <div class="p-2 createForm add-role">
         <h4 class="h4">Update Shipment Status</h4>
-        <form method="post" th:action="${'/shipments/newStaus'}" th:object="${shipment}">
+        <form method="post" th:action="${'/shipments/newStatus'}" th:object="${shipment}">
             <div class="form-group">
                 <label>Id</label>
                 <input class="form-control" th:field="*{id}" name="id" readonly>

@@ -46,6 +46,17 @@ public class ShipmentController {
         return "shipment/updateStatus";
     }
 
+    @RequestMapping(value = "/shipments/newStatus", method = RequestMethod.POST)
+    public String updateStatus(Model model, @RequestParam long id, @RequestParam String newStatus) {
+
+        Shipment s = shipmentRepository.findById(id).get();
+        s.setStatus(newStatus);
+
+        shipmentRepository.save(s);
+
+        return "redirect:/shipments/list";
+    }
+
     @RequestMapping(value = "/shipments/edit/{id}", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
 

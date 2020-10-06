@@ -12,7 +12,7 @@
         <caption class="table-head">LIST OF All SHIPMENT</caption>
         <tr>
             <th>ID</th>
-<!--                    <th>SHIPPER</th>-->
+            <th>SHIPPER</th>
             <th>SHIPMENT LOCATION</th>
             <th>STATUS</th>
             <th>UPDATE STATUS</th>
@@ -20,6 +20,7 @@
         </tr>
         <tr th:each="c : *{shipments}">
             <td th:text="${c.getId()}"></td>
+
             <td th:text="${c.getShippingLocation()}"></td>
             <td th:text="${c.getStatus()}"></td>
             <td><a th:href="@{/shipments/updateStatus/{id}(id=${c.getId()})}"><button class="btn btn-warning" name="button">Update Status</button></a></td>
