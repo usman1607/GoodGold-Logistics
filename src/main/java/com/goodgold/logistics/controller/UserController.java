@@ -82,8 +82,9 @@ public class UserController {
             u.setTitle("Seller");
 
             userRepository.save(u);
-            redirectAttributes.addAttribute("succeed","You have successfully registered");
-            return "redirect:/login";
+            redirectAttributes.addAttribute("success","You have successfully registered");
+            redirectAttributes.addAttribute("successful",true);
+            return "redirect:/users/create";
         }
         return "redirect:/users/create";
     }

@@ -105,10 +105,10 @@
     <div class="container">
         <p class="m-0 text-center text-white">
             Copyright &copy; GOOD GOLD Logistics 2020
-            <i class="ml-5 mr-2 fab fa-facebook-f"></i>
-            <i class="mr-2 fab fa-twitter"></i>
-            <i class="mr-2 fab fa-instagram"></i>
-            <i class="mr-2 fab fa-github"></i>
+            <a th:href="@{https://www.facebook.com}" target="_blank"><i class="ml-5 mr-2 fab fa-facebook-f"></i></a>
+            <a th:href="@{https://www.twitter.com}" target="_blank"><i class="mr-2 fab fa-twitter"></i></a>
+            <a th:href="@{https://www.instagram.com}" target="_blank"><i class="mr-2 fab fa-instagram"></i></a>
+            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>
         </p>
     </div>
 </footer>
@@ -119,7 +119,9 @@
 <script th:src="@{/js/sweetalert2.all.min.js}"></script>
 <script th:src="@{/js/myJsFile.js}"></script>
 
-<th:block layout:fragment="optional" />
+<!-- Content Section -->
+<section layout:fragment="scripts">
+</section>
 
 </body>
 </html>

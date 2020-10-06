@@ -64,6 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/warehouses/list").hasRole("STAFF")
                 .antMatchers("/shipments/list").hasRole("STAFF")
 
+                .antMatchers("/roles/**").hasRole("STAFF")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
