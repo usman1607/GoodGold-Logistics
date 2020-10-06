@@ -107,7 +107,7 @@ public class UserController {
         return "admin/dashboard";
     }
 
-    @RequestMapping(value = "/users/u_details/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/fullDetails/{id}", method = RequestMethod.GET)
     public String sellerDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userRepository.findById(id).get());
         return "/user/userDetails";
