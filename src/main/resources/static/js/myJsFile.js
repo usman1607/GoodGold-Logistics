@@ -1,6 +1,5 @@
 function congrats(){
     $(document).ready(function () {
-        //      let notification = /*[[${notification}]]*/ "";
         let action = document.getElementById('succeed');
         if (action.innerHTML === "You have successfully registered") {
             Swal.fire({
