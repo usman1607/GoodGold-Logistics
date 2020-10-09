@@ -14,15 +14,21 @@ Scope of this Project
 In this project, we intend to work with sellers of all kinds of products all over the world. Our responsiblility is to take care of warehousing of the product. The seller will ship the product directly to our warehouse address and place advert of the product anywhere he/she likes, though can also plase the advert on our website, but the selling aspect will be take care of by the seller. Once the seller make sales, he/she will just issue receipt which will also be referenced to us, then send a picker to our warehouse to pick the product for final delivery to the buyer, though he/she has the option of making use of our delivery service at some reasonable cost.
 So the following will be done in the first face of the project:
 -	The seller will be able to register on the website.
--	The seller will be able to send the shipment details and tracking 	number to us.
+-	The seller will be able to send the shipment details and tracking number to us.
 -	He will be able to login to the website and sees his/her profile.
--	The seller will also be able to monitor the status of the prodect 	shipped weither it is still in transit or already in our warehouse.
--	The admin will also be able to login as admin and update the status 	of the products.
+-	The seller will also be able to monitor the status of the prodect shipped weither it is still in transit or already in our warehouse.
+-	The admin will also be able to login as admin and update the status of the products.
+
 Milestones
+
 Day 1:	Analysing the summary, scope and milestones of the project.
-Day 2:	Sketching of views of the website.
-		Creation of models, repositories and database.
+
+Day 2:	Sketching of views of the website. Creation of models, repositories and database.
+
 Day 3-6:	Creation of business logics and services.
+
 Day 7-8:	Development of the user interface.
+
 Day 9:	Application testing for deployment.
+
 Day 10:	Web Application Deployment.
