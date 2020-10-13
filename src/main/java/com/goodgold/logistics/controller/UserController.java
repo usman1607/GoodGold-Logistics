@@ -149,8 +149,9 @@ public class UserController {
         User u = userRepository.findById(id).get();
         String username = u.getUsername();
 
-        String old = passwordEncoder.encode(oldPassword);
-        if(!old.equals(u.getPassword())){
+//        String old = passwordEncoder.encode(oldPassword);
+//        boolean isPasswordMatch = passwordEncoder.matches(oldPassword, u.getPassword());
+        if(!passwordEncoder.matches(oldPassword, u.getPassword())){
             redirectAttributes.addAttribute("error","Password is not correct...");
         }
 
@@ -162,7 +163,8 @@ public class UserController {
         }
 
         else{
-            u.setPassword(old);
+            String new_p = passwordEncoder.encode(newPassword);
+            u.setPassword(new_p);
             userRepository.save(u);
             return "redirect:/myPage/page/"+username;
         }
@@ -236,7 +238,8 @@ public class UserController {
             u.setTitle("Staff");
 
             userRepository.save(u);
-            return "redirect:/staffs/list";
+            redirectAttributes.addAttribute("success","You have successfully added a staff");
+            return "redirect:/staffs/create";
         }
 
 

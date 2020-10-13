@@ -14,6 +14,7 @@
         <tr>
             <th>ID</th>
             <th>SELLER NAME</th>
+            <th>WAREHOUSE</th>
             <th>PRODUCT NAME</th>
             <th>CATEGORY</th>
             <th>QUANTITY</th>
@@ -23,6 +24,7 @@
         <tr th:each="c : *{products}">
             <td th:text="${c.getId()}"></td>
             <td th:text="${c.getUser().getFirstName()}+' '+${c.getUser().getLastName()}"></td>
+            <td th:text="${c.getShipment().getWarehouse().getCode()}"></td>
             <td th:text="${c.getName()}"></td>
             <td th:text="${c.getCategory().getName()}"></td>
             <td th:text="${c.getQuantity()}"></td>
@@ -31,5 +33,20 @@
                 <button class="btn btn-info" name="button">Details</button></a></td>
         </tr>
     </table>
+
+    <div th:if="${noProduct}" class="mt-3">
+        <span class="alert alert-info text-success" th:text="${noProduct}"></span>
+        <span>Please go to <span><a th:href="@{/products/create/{username}(username=${#request.remoteUser})}">Add New Product</a></span> to add products</span>
+    </div>
+    <div th:if="${myProducts}" class="mt-3">
+        <span>You have <span class="alert alert-info text-success" th:text="${myProducts}"></span>
+         products added</span>
+        <p class="mt-3 mb-5"><a th:href="@{/products/create/{username}(username=${#request.remoteUser})}">Add New Product</a></p>
+    </div>
+    <div th:if="${allProducts}" class="mt-3">
+        <span>We have the total of</span>
+        <span class="alert alert-info text-success" th:text="${allProducts}"></span>
+        <span>Products in our warehouses.</span>
+    </div>
 </body>
 </html>

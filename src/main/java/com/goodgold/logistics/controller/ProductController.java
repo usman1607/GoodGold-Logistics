@@ -37,6 +37,7 @@ public class ProductController {
     @RequestMapping(value = "/products/list", method = RequestMethod.GET)
     public String products(Model model){
         model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("allProducts", productRepository.count());
         return "product/list";
     }
 
@@ -92,7 +93,17 @@ public class ProductController {
 
     @GetMapping("/products/myList/{username}")
     public String myList(@PathVariable("username") String username, Model model){
+        User u = userRepository.findUserByUsername(username);
+
         model.addAttribute("products", productRepository.findProductsByUserUsername(username));
+//        long myProducts = productRepository.count();
+        long myProducts = productRepository.allProducts(u.getId());
+        if(myProducts != 0){
+            model.addAttribute("myProducts", myProducts);
+        }else {
+            model.addAttribute("noProduct", "There is no product added yet...");
+        }
+
         return "product/list";
     }
 

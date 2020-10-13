@@ -28,6 +28,10 @@
             <td th:text="${product.getUser().getFirstName()}+' '+${product.getUser().getLastName()}"> </td>
         </tr>
         <tr>
+            <td>WAREHOUSE</td>
+            <td th:text="${product.getShipment().getWarehouse().getCode()}"> </td>
+        </tr>
+        <tr>
             <td>SHIPMENT STATUS</td>
             <td th:text="${product.getShipment().getStatus()}"></td>
             <td>

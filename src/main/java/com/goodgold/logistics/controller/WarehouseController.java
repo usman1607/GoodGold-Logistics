@@ -23,6 +23,12 @@ public class WarehouseController {
         return "warehouse/list";
     }
 
+    @RequestMapping(value = "/warehouses/wh_list", method = RequestMethod.GET)
+    public String warehousesList(Model model){
+        model.addAttribute("warehouses", warehouseRepository.findAll());
+        return "user/wh_list";
+    }
+
     @GetMapping("/warehouses/create")
     public String create(Model model){
         return "warehouse/list";

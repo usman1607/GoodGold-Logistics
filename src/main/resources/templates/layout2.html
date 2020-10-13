@@ -108,6 +108,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" th:href="@{/warehouses/wh_list}">
+                                <i class="fa fa-clipboard-list"></i>All Warehouses
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
                                 <i class="fa fa-plus-circle"></i>Add New Product
                             </a>
@@ -163,7 +168,7 @@
             <a th:href="@{https://www.facebook.com}" target="_blank"><i class="ml-5 mr-2 fab fa-facebook-f"></i></a>
             <a th:href="@{https://www.twitter.com}" target="_blank"><i class="mr-2 fab fa-twitter"></i></a>
             <a th:href="@{https://www.instagram.com}" target="_blank"><i class="mr-2 fab fa-instagram"></i></a>
-            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>
+<!--            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>-->
         </p>
     </div>
 </footer>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{layout}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>Home</title>
 </head>
@@ -12,6 +13,7 @@
 
 <!-- Header with Carousel -->
 <header>
+
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -25,44 +27,79 @@
 
             <!-- Slide One - Set the background image for this slide in the line below -->
             <div class="carousel-item active" style="background-image: url('images/home.jpg')">
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <div  class="page-btn">-->
+<!--                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">-->
+<!--                            <button class="btn btn-lg btn-info"><b>Go To My Page</b></button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h3 class="text-white">GOOD GOLD Logistics</h3>
-                    <p class="text-white">Our road haulage products offer services that<br/>ensure the safe monitoring and integrity of your<br/>products until delivery.</p>
+                    <h1 class="text-white">GOOD GOLD Logistics</h1>
+                    <h5><mark>Our road haulage products offer services that<br/>ensure the safe monitoring and integrity of your<br/>products until delivery.</mark></h5>
                 </div>
             </div>
 
             <!-- Slide Two - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/img2.jpg')">
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <div  class="page-btn">-->
+<!--                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">-->
+<!--                            <button class="btn btn-lg btn-info"><b>Go To My Page</b></button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h3 class="text-white">WAREHOUSING</h3>
-                    <p class="text-white">With over 120,000 square meters of warehousing space<br/>spread across 50 distribution centres in Nigeria,
-                        we<br/>provide a unique variety of warehousing offerings.<br/> </p>
+                    <h1 class="text-white">WAREHOUSING</h1>
+                    <h5><mark>With over 120,000 square meters of warehousing space<br/>spread across 50 distribution centres in Nigeria,
+                        we<br/>provide a unique variety of warehousing offerings.<br/> </mark></h5>
                 </div>
             </div>
 
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/img3.jpg')">
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <div  class="page-btn">-->
+<!--                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">-->
+<!--                            <button class="btn btn-lg btn-info"><b>Go To My Page</b></button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h3 class="text-white">DISTRIBUTION</h3>
-                    <p class="text-white">Our robust knowledge of the local terain puts us in a <br/>vantage position to offer you unmatched
-                        secondary<br/>distribution services.</p>
+                    <h1 class="text-white">DISTRIBUTION</h1>
+                    <h5><mark>Our robust knowledge of the local terain puts us in a <br/>vantage position to offer you unmatched
+                        secondary<br/>distribution services.</mark></h5>
                 </div>
             </div>
 
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/img4.jpg')">
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <div  class="page-btn">-->
+<!--                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">-->
+<!--                            <button class="btn btn-lg btn-info"><b>Go To My Page</b></button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h3 class="text-white">TELECOM LOGISTICS</h3>
-                    <p class="text-white">We have consistently achieved 100% SLA compliance  for <br/>all major telecoms clients since
-                        the commencement of <br/>telecoms distribution in Nigeria. </p>
+                    <h1 class="text-white">TELECOM LOGISTICS</h1>
+                    <h5><mark>We have consistently achieved 100% SLA compliance  for <br/>all major telecoms clients since
+                        the commencement of <br/>telecoms distribution in Nigeria. </mark></h5>
                 </div>
             </div>
 
             <!-- Slide Three - Set the background image for this slide in the line below -->
             <div class="carousel-item" style="background-image: url('images/img2.png')">
+<!--                <div sec:authorize="isAuthenticated()">-->
+<!--                    <div  class="page-btn">-->
+<!--                        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">-->
+<!--                            <button class="btn btn-lg btn-info"><b>Go To My Page</b></button>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="carousel-caption d-none d-md-block">
-                    <h3 class="text-white">PHARMA LOGISTICS</h3>
-                    <p class="text-white">We provide full fledged specialised pharmaceutical<br/>logistics services. </p>
+                    <h1 class="text-white">PHARMA LOGISTICS</h1>
+                    <h5><mark>We provide full fledged specialised pharmaceutical<br/>logistics services. </mark></h5>
                 </div>
             </div>
         </div>

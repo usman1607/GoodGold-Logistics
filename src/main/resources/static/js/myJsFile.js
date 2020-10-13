@@ -19,3 +19,21 @@ function congrats(){
         }
     })
 }
+
+function created(){
+    $(document).ready(function () {
+        let action = document.getElementById('staff-added');
+        if (action.innerHTML === "You have successfully added a staff") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Congrats! You have successfully added a staff.',
+                showCancelButton: false,
+                focusConfirm: false,
+                confirmButtonColor: '#b1ef95',
+                confirmButtonText:
+                    '<a href="/staff/list"><i class="fa fa-thumbs-up"></i> Great!</a>',
+                confirmButtonAriaLabel: 'Thumbs up, great!'
+            })
+        }
+    })
+}
