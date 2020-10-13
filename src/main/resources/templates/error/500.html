@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Usman Gee">
+
+    <title>GOOD GOLD Logistics - Error</title>
+
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/_icon.png}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+</head>
+<body>
+<div id="notfound">
+    <div class="notfound">
+        <div class="notfound-404">
+            <h1>Oops!</h1>
+        </div>
+        <h2>500 - Internal Server Error</h2>
+        <p>Oh no! Our spaghetti code is not working properly. We will be back soon!"</p>
+        <a th:href="@{/}">Go To Homepage</a>
+        <a th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">Go To My Page</a>
+    </div>
+</div>
+</body>
+</html>
