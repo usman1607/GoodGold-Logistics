@@ -105,7 +105,7 @@ public class ProductController {
         product.setStatus("Approved");
         productRepository.save(product);
 
-        return "product/list";
+        return "redirect:/products/list";
     }
 
     @GetMapping("/products/disapprove/{id}")
@@ -114,7 +114,7 @@ public class ProductController {
         product.setStatus("Disapproved");
         productRepository.save(product);
 
-        return "product/list";
+        return "redirect:/products/list";
     }
 
     @GetMapping("/products/myList/{username}")
