@@ -49,7 +49,7 @@
             <td>DESCRIPTION</td>
             <td th:text="${product.getDescription()}"></td>
         </tr>
-        <tr sec:authorize="hasRole('SECRETARY')">
+        <tr sec:authorize="hasRole('ADMIN')">
             <span th:if="${approval}">
                 <td>
                     <span>OK: </span>
