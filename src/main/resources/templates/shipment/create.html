@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
+<head>
+    <title>Add Shipment Details</title>
+</head>
+
+<body layout:fragment="content">
+<div class="p-2 add-staff createForm mb-5" >
+    <h4>Add Shipment Details</h4>
+    <form method="post" th:action="${'/shipments/add'}" th:object="${product}">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Product ID</label>
+                <input type="text" name="id" class="form-control" th:field="*{id}" readonly>
+            </div>
+
+            <div class="form-group col-md-4" >
+                <label>Product Name</label>
+                <input type="text" class="form-control mw-100" th:field="*{name}" name="name" readonly>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Product Quantity</label>
+                <input type="text" class="form-control mw-100" th:field="*{quantity}" name="quantity">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4" >
+                <label>Warehouse Shipping To:</label>
+                <span type="text" class="form-control" th:text="${shipment.getWarehouse().getCode()}" name="warehouseCode" readonly></span>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Shipping from where?</label>
+                <input type="text" class="form-control" name="shippingLocation" >
+            </div>
+
+            <div class="form-group col-md-4">
+                <label>Tracking No.:</label>
+                <input type="text" class="form-control" name="trackingNo">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label>Shipping Date:</label>
+                <input type="datetime-local" class="form-control mw-100" name="shippingDate">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label>Expected D. Date</label>
+                <input type="datetime-local" class="form-control mw-100" name="expectedDeliveryDate">
+            </div>
+        </div>
+
+        <div>
+            <button class="btn-outline-success" name="button">Add Shipment Details</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

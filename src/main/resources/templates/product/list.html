@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout2}">
+      layout:decorate="~{layout2}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <title>All Products</title>
 </head>
@@ -9,16 +10,17 @@
 <body layout:fragment="content">
 
     <h2>List of Products</h2>
-    <table class="table table-striped table-sm bg-dark text-white">
+    <table class="table table-striped table-sm bg-dark text-white" id="myTab1">
         <caption class="table-head">LIST OF PRODUCTS</caption>
         <tr>
             <th>ID</th>
             <th>SELLER NAME</th>
             <th>WAREHOUSE</th>
             <th>PRODUCT NAME</th>
-            <th>CATEGORY</th>
             <th>QUANTITY</th>
+            <th>PRODUCT STATUS</th>
             <th>SHIPMENT STATUS</th>
+            <td sec:authorize="hasRole('SELLER')">SHIP</td>
             <th>DETAILS</th>
         </tr>
         <tr th:each="c : *{products}">
@@ -26,11 +28,17 @@
             <td th:text="${c.getUser().getFirstName()}+' '+${c.getUser().getLastName()}"></td>
             <td th:text="${c.getShipment().getWarehouse().getCode()}"></td>
             <td th:text="${c.getName()}"></td>
-            <td th:text="${c.getCategory().getName()}"></td>
             <td th:text="${c.getQuantity()}"></td>
+            <td id="p_status" th:text="${c.getStatus()}"></td>
             <td th:text="${c.getShipment().getStatus()}"></td>
+            <td sec:authorize="hasRole('SELLER')">
+                <span th:if="${c.getShip()}">
+                    <a th:href="@{/shipments/create/{id}(id=${c.getShipment().getId()})}">
+                        <button class="btn btn-sm btn-info">Add Shipment</button></a>
+                </span>
+            </td>
             <td><a th:href="@{/products/details/{id}(id=${c.getId()})}">
-                <button class="btn btn-info" name="button">Details</button></a></td>
+                <button class="btn btn-sm btn-info" name="button">Details</button></a></td>
         </tr>
     </table>
 
@@ -48,5 +56,25 @@
         <span class="alert alert-info text-success" th:text="${allProducts}"></span>
         <span>Products in our warehouses.</span>
     </div>
+
+    <section layout:fragment="scripts">
+        <script>
+            function changeStatusColor() {
+                const table = document.getElementById("myTab1");
+                for (let line=1; line < table.rows.length; line++)
+                {
+                    if ( table.rows[line].cells[5].textContent == "Approved" )
+                    {
+                        table.rows[line].cells[5].classList.add("text-success");
+                    }else if ( table.rows[line].cells[5].textContent == "Not Yet Approved" ){
+                        table.rows[line].cells[5].classList.add("text-warning");
+                    }else {
+                        table.rows[line].cells[5].classList.add("text-danger");
+                    }
+                }
+            }
+            changeStatusColor();
+        </script>
+    </section>
 </body>
 </html>

@@ -25,18 +25,22 @@ public class Product {
 
     private int quantity;
     private String description;
+    private String status;
+    private String ship;
 
     public Product(){
 
     }
 
-    public Product(String name, Category category, User user, Shipment shipment, int quantity, String description) {
+    public Product(String name, Category category, User user, Shipment shipment, int quantity, String description, String status, String ship) {
         this.name = name;
         this.category = category;
         this.user = user;
         this.shipment = shipment;
         this.quantity = quantity;
         this.description = description;
+        this.status = status;
+        this.ship = ship;
     }
 
     public long getId() {
@@ -89,5 +93,21 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getShip() {
+        return ship;
+    }
+
+    public void setShip(String ship) {
+        this.ship = ship;
     }
 }

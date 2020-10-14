@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -51,26 +52,27 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/products/add", method = RequestMethod.POST)
-    public String add(Model model, @RequestParam long id, RegisterProductModel registerProductModel, RegisterShipmentModel registerShipmentModel) throws ParseException {
+    public String add(Model model, @RequestParam long id, RegisterProductModel registerProductModel, RegisterShipmentModel registerShipmentModel) {
 
         Product p = new Product();
         Shipment s = new Shipment();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 
         Warehouse w = warehouseRepository.findWarehouseByCode(registerShipmentModel.getWarehouseCode());
         s.setWarehouse(w);
         s.setShippingLocation(registerShipmentModel.getShippingLocation());
-        s.setStatus("In Transit");
-        Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
-        Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
-        s.setShippingDate(shipDate);
-        s.setExpectedDeliveryDate(EDD);
-        s.setTrackingNo(registerShipmentModel.getTrackingNo());
+        s.setStatus("Not Yet Shipped");
+//        Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
+//        Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
+//        s.setShippingDate(shipDate);
+//        s.setExpectedDeliveryDate(EDD);
+//        s.setTrackingNo(registerShipmentModel.getTrackingNo());
 
         User user = userRepository.findById(id).get();
         Category c = categoryRepository.findCategoryByName(registerProductModel.getCategoryName());
         p.setName(registerProductModel.getName());
+        p.setStatus("Not Yet Approved");
         p.setCategory(c);
         p.setShipment(s);
         p.setUser(user);
@@ -87,23 +89,51 @@ public class ProductController {
 
     @GetMapping("/products/details/{id}")
     public String productDetails(@PathVariable("id") long id, Model model){
-        model.addAttribute("product", productRepository.findById(id).get());
+        Product product = productRepository.findById(id).get();
+        if(product.getStatus().equals("Not Yet Approved")){
+            model.addAttribute("approval", "approval");
+            model.addAttribute("product", product);
+            return "product/details";
+        }else
+        model.addAttribute("product", product);
         return "product/details";
+    }
+
+    @GetMapping("/products/approve/{id}")
+    public String approveProduct(@PathVariable("id") long id, Model model){
+        Product product = productRepository.findById(id).get();
+        product.setStatus("Approved");
+        productRepository.save(product);
+
+        return "product/list";
+    }
+
+    @GetMapping("/products/disapprove/{id}")
+    public String disapproveProduct(@PathVariable("id") long id, Model model){
+        Product product = productRepository.findById(id).get();
+        product.setStatus("Disapproved");
+        productRepository.save(product);
+
+        return "product/list";
     }
 
     @GetMapping("/products/myList/{username}")
     public String myList(@PathVariable("username") String username, Model model){
         User u = userRepository.findUserByUsername(username);
+        List<Product> products = productRepository.findProductsByUserUsername(username);
+        model.addAttribute("products", products);
 
-        model.addAttribute("products", productRepository.findProductsByUserUsername(username));
-//        long myProducts = productRepository.count();
+        for(Product p : products) {
+            if (p.getShipment().getStatus().equals("Not Yet Shipped") && (p.getStatus().equals("Approved"))) {
+                p.setShip("ship");
+            }
+        }
         long myProducts = productRepository.allProducts(u.getId());
         if(myProducts != 0){
             model.addAttribute("myProducts", myProducts);
         }else {
             model.addAttribute("noProduct", "There is no product added yet...");
         }
-
         return "product/list";
     }
 

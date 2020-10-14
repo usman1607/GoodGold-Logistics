@@ -1,11 +1,11 @@
 package com.goodgold.logistics.controller;
 
-import com.goodgold.logistics.model.Category;
-import com.goodgold.logistics.model.Shipment;
-import com.goodgold.logistics.model.Warehouse;
+import com.goodgold.logistics.model.*;
+import com.goodgold.logistics.model.viewmodels.RegisterProductModel;
 import com.goodgold.logistics.model.viewmodels.RegisterShipmentModel;
 import com.goodgold.logistics.repository.ProductRepository;
 import com.goodgold.logistics.repository.ShipmentRepository;
+import com.goodgold.logistics.repository.UserRepository;
 import com.goodgold.logistics.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,10 +26,14 @@ public class ShipmentController {
     final
     ProductRepository productRepository;
 
-    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, ProductRepository productRepository) {
+    final
+    UserRepository userRepository;
+
+    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, ProductRepository productRepository, UserRepository userRepository) {
         this.shipmentRepository = shipmentRepository;
         this.warehouseRepository = warehouseRepository;
         this.productRepository = productRepository;
+        this.userRepository = userRepository;
     }
 
     @RequestMapping(value = "/shipments/list", method = RequestMethod.GET)
@@ -64,6 +68,36 @@ public class ShipmentController {
         shipmentRepository.save(s);
 
         return "redirect:/shipments/list";
+    }
+
+    @GetMapping(value = "/shipments/create/{id}")
+    public String showCreateForm(@PathVariable("id") long id, Model model){
+        model.addAttribute("product", productRepository.findProductByShipmentId(id));
+        model.addAttribute("shipment", shipmentRepository.findById(id).get());
+        return "shipment/create";
+    }
+
+    @PostMapping(value = "/shipments/add")
+    public String createShipment(Model model, @RequestParam long id, RegisterProductModel registerProductModel, RegisterShipmentModel registerShipmentModel) throws ParseException {
+        Product p = productRepository.findById(id).get();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+
+        p.setQuantity(registerProductModel.getQuantity());
+
+        if(!registerShipmentModel.getShippingLocation().equals("")){
+            p.getShipment().setShippingLocation(registerShipmentModel.getShippingLocation());
+        }
+        p.getShipment().setStatus("In Transit");
+        Date shipDate = formatter.parse(registerShipmentModel.getShippingDate());
+        Date EDD = formatter.parse(registerShipmentModel.getExpectedDeliveryDate());
+        p.getShipment().setShippingDate(shipDate);
+        p.getShipment().setExpectedDeliveryDate(EDD);
+        p.getShipment().setTrackingNo(registerShipmentModel.getTrackingNo());
+
+        productRepository.save(p);
+        shipmentRepository.save(p.getShipment());
+
+        return "redirect:/products/details/"+id;
     }
 
     @RequestMapping(value = "/shipments/edit/{id}", method = RequestMethod.GET)
