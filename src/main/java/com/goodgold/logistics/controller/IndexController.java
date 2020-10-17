@@ -31,14 +31,9 @@ public class IndexController {
         return "/about";
     }
 
-    @GetMapping("/sub-plans")
-    public String plans(){
-        return "/plans";
-    }
-
-    @GetMapping("/subPlans")
+    @GetMapping("/subs")
     public String subPlans(Model model){
-        return "/index";
+        return "payment/subscription";
     }
 
     @GetMapping("/contact")
