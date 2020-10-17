@@ -132,6 +132,11 @@
                                 <i class="fa fa-question-circle"></i>My Status
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="modal" data-target="#hiw-modal" href="#">
+                                <i class="fa fa-info"></i>How It Works
+                            </a>
+                        </li>
                     </div>
                 </ul>
             </div>
@@ -152,6 +157,102 @@
             <section layout:fragment="content">
                 <p>This is filled by the content template.</p>
             </section>
+            <!-- Modals -->
+            <div id="hiw-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title text-info">Instructions & How It Works</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>When you registered on our website for free, you have to subscribe for one of our
+                                <a data-toggle="modal" data-target="#plans-modal" href="#">plans</a> before you can be able to send your products to any of our warehouses.</p>
+                            <p>When you have an active subscription with us, you can send the details of your products by
+                                clicking the "Add New Product" in your profile and wait for approval which will be done by
+                                our always online team before you go ahead and ship the products to the warehouse that
+                                you choose, then you can as well send shipment details to us through the link in front of
+                                the product in your products list.
+                            <p>When the products get to our warehouse you will be notified by mail, then you can sell you product
+                                by any means and issue receipt to the buyer and also send the reference to us. After that the
+                                buyer can come and pick the goods from our warehouse, we can also do the delivery for you but it
+                                will attract some charges.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="plans-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title text-info">Subscription Plans</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body container mb-3 text-center">
+<!--                            <div class="row card-deck mb-3 text-center">-->
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Basic</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">$699 <small class="text-muted">/ Year</small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <li>5,000 Square Metres Space</li>
+                                            <li>Access to 5 warehouses</li>
+                                            <li>Email support</li>
+                                            <li>Help center access</li>
+                                        </ul>
+                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
+                                    </div>
+                                </div>
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Pro</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">$1,000 <small class="text-muted">/ Year</small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <li>10,000 Square Metres Space</li>
+                                            <li>Access to 10 warehouses</li>
+                                            <li>Priority email support</li>
+                                            <li>Help center access</li>
+                                        </ul>
+                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
+                                    </div>
+                                </div>
+                                <div class="card mb-4 shadow-sm">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Premium</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h1 class="card-title pricing-card-title">$1,499 <small class="text-muted">/ Year</small></h1>
+                                        <ul class="list-unstyled mt-3 mb-4">
+                                            <li>30,000 Square Metres Space</li>
+                                            <li>Access to all warehouses</li>
+                                            <li>Phone and email support</li>
+                                            <li>Help center access</li>
+                                        </ul>
+                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
+                                    </div>
+                                </div>
+<!--                            </div>-->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
         </main>
     </div>

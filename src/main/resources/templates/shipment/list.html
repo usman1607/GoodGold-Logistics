@@ -7,25 +7,54 @@
 </head>
 
 <body layout:fragment="content">
-    <h2>List of All Shipment</h2>
-    <table class="table table-striped table-sm bg-dark text-white">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>List of All Shipment</h1>
+        </div>
+        <div class="col-md-6">
+            <input type="text" class="mySearch float-right" placeholder="Search list...">
+        </div>
+    </div>
+    <table class="table table-striped table-sm bg-dark text-white" id="shipTab">
         <caption class="table-head">LIST OF All SHIPMENT</caption>
+        <thead>
         <tr>
-            <th>ID</th>
-<!--            <th>SHIPPER</th>-->
+            <th>S/N</th>
             <th>SHIPMENT LOCATION</th>
             <th>STATUS</th>
+            <th>TRACKING NO.</th>
+            <th>SHIPPING TO:</th>
             <th>UPDATE STATUS</th>
             <th>DETAILS</th>
         </tr>
+        </thead>
+        <tbody class="myTable">
         <tr th:each="c : *{shipments}">
-            <td th:text="${c.getId()}"></td>
-
+            <td></td>
             <td th:text="${c.getShippingLocation()}"></td>
             <td th:text="${c.getStatus()}"></td>
+            <td th:text="${c.getTrackingNo()}"></td>
+            <td th:text="${c.getWarehouse().getCode()}"></td>
             <td><a th:href="@{/shipments/updateStatus/{id}(id=${c.getId()})}"><button class="btn btn-warning" name="button">Update Status</button></a></td>
             <td><a th:href="@{/shipments/details/{id}(id=${c.getId()})}"><button class="btn btn-info" name="button">Details</button></a></td>
         </tr>
+        </tbody>
     </table>
+
+    <section layout:fragment="scripts">
+
+        <script>
+            function serialNo() {
+                const table = document.getElementById("shipTab");
+                let s_No = 1;
+                for (let line=1; line < table.rows.length; line++)
+                {
+                    table.rows[line].cells[0].innerHTML = s_No.toString();
+                    s_No++;
+                }
+            }
+            serialNo();
+        </script>
+    </section>
 </body>
 </html>

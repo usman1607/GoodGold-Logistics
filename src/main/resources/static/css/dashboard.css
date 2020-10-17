@@ -91,6 +91,17 @@ body {
   border-radius: 0;
 }
 
+.mySearch {
+  background: url('../images/search_icon.png') no-repeat;
+  background-position: 10px 12px; /* Position the search icon */
+  background-size: 28px 28px;
+  width: 100%; /* Full-width */
+  font-size: 16px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 2px solid #3cdb3c; /* Add a grey border */
+  margin-bottom: 12px; /* Add some space below the input */
+}
+
 .form-control-dark {
   color: #fff;
   background-color: rgba(255, 255, 255, .1);
@@ -101,3 +112,4 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
+

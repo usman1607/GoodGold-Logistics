@@ -55,7 +55,8 @@
                     <span>OK: </span>
                     <span>
                         <a th:href="@{/products/approve/{id}(id=${product.getId()})}">
-                            <button class="btn btn-sm btn-info" name="button">Approve Product</button>
+                            <button class="btn btn-sm btn-info" onclick="return confirm('Are you sure you want to approve the product?');">
+                                Approve Product</button>
                         </a>
                     </span>
                 </td>
@@ -63,7 +64,8 @@
                     <span>NOT OK: </span>
                     <span>
                         <a th:href="@{/products/disapprove/{id}(id=${product.getId()})}">
-                            <button class="btn btn-sm btn-danger" name="button">Disapprove</button>
+                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to disapprove the product?');">
+                                Disapprove</button>
                         </a>
                     </span>
                 </td>
