@@ -31,8 +31,8 @@ public class IndexController {
         return "/about";
     }
 
-    @GetMapping("/plans")
-    public String plans(Model model){
+    @GetMapping("/sub-plans")
+    public String plans(){
         return "/plans";
     }
 
