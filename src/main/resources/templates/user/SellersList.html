@@ -43,7 +43,7 @@
             <td><a th:href="@{/users/products/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Products</button></a></td>
             <td><a th:href="@{/users/moreInfo/{id}(id=${s.getId()})}"><button class="btn btn-warning" name="button">Full Details</button></a></td>
             <td><a th:href="@{/users/delete/{id}(id=${s.getId()})}">
-                <button class="btn btn-danger confirmation" onclick="return confirm('Are you sure you want to delete?');" id="del-btn" name="button">Delete</button></a></td>
+                <button class="btn btn-danger sellerDel" onclick="return confirm('Are you sure you want to delete?');" id="del-btn" name="button">Delete</button></a></td>
         </tr>
         </tbody>
     </table>
@@ -53,7 +53,6 @@
         <script>
             const table = document.getElementById("sellerTab");
             function serialNo() {
-
                 let s_No = 1;
                 for (let line=1; line < table.rows.length; line++)
                 {
@@ -62,30 +61,6 @@
                 }
             }
             serialNo();
-
-
-            // $('#del-btn').on('click', function (e) {
-            //     e.preventDefault();
-            //     let href = $(this).attr('href');
-            //
-            //     swal.fire({
-            //             title: "Are you sure?",
-            //             type: "warning",
-            //             showCancelButton: true,
-            //             confirmButtonColor: "#DD6B55",
-            //             confirmButtonText: "Yes, delete it!",
-            //             cancelButtonText: "No, cancel plx!",
-            //             closeOnConfirm: true,
-            //             closeOnCancel: true
-            //         },
-            //         function (isConfirm) {
-            //             if (isConfirm) {
-            //                 window.location.href = href;
-            //             }
-            //         });
-            //     return false;
-            // });
-
         </script>
     </section>
 
