@@ -36,6 +36,11 @@ public class IndexController {
         return "/plans";
     }
 
+    @GetMapping("/subPlans")
+    public String subPlans(Model model){
+        return "/index";
+    }
+
     @GetMapping("/contact")
     public String contact(Model model){
         return "/contact";
