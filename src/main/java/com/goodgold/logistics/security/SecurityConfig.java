@@ -59,12 +59,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/staffs/add").hasRole("STAFF")
                 .antMatchers("/staffs/list").hasRole("STAFF")
                 .antMatchers("/sellers/list").hasRole("STAFF")
-                .antMatchers("/roles/list").hasRole("STAFF")
-                .antMatchers("/categories/list").hasRole("STAFF")
                 .antMatchers("/products/list").hasRole("STAFF")
                 .antMatchers("/warehouses/list").hasRole("STAFF")
                 .antMatchers("/shipments/list").hasRole("STAFF")
 
+                .antMatchers("/users/moreInfo/**").hasRole("STAFF")
+                .antMatchers("/categories/**").hasRole("STAFF")
                 .antMatchers("/roles/**").hasRole("STAFF")
 
                 .anyRequest().authenticated()

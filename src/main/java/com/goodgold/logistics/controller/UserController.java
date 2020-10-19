@@ -5,7 +5,9 @@ import com.goodgold.logistics.model.User;
 import com.goodgold.logistics.model.viewmodels.RegisterUserModel;
 import com.goodgold.logistics.repository.RoleRepository;
 import com.goodgold.logistics.repository.UserRepository;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,9 +103,36 @@ public class UserController {
         return "user/SellersList";
     }
 
-    @RequestMapping(value = "/myPage/page/{username}", method = RequestMethod.GET)
-    public String myPage(@PathVariable("username") String username, Model model){
+//    @RequestMapping(value = "/myPage/page/{username}", method = RequestMethod.GET)
+//    public String myPage(@PathVariable("username") String username, Model model){
+//        model.addAttribute("user", userRepository.findUserByUsername(username));
+//        return "admin/dashboard";
+//    }
+
+    public String getSignedUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        String username;
+        if(principal instanceof UserDetails) {
+            username = ((UserDetails)principal).getUsername();
+        }else {
+            username = principal.toString();
+        }
+        return username;
+    }
+
+    @RequestMapping(value = "/myPage", method = RequestMethod.GET)
+    public String myPage(Model model){
+
+        String username = getSignedUser();
+        User u = userRepository.findUserByUsername(username);
+        List<String> roles = new ArrayList<>();
+        for(Role r : u.getRoles()){
+            roles.add(r.getName());
+        }
+
         model.addAttribute("user", userRepository.findUserByUsername(username));
+        model.addAttribute("roles", roles);
         return "admin/dashboard";
     }
 
@@ -113,9 +142,9 @@ public class UserController {
         return "/user/details";
     }
 
-    @RequestMapping(value = "/users/profile/{username}", method = RequestMethod.GET)
-    public String showUpdateForm(@PathVariable("username") String username, Model model) {
-
+    @RequestMapping(value = "/users/profile", method = RequestMethod.GET)
+    public String showUpdateForm(Model model) {
+        String username = getSignedUser();
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "user/edit";
     }
@@ -135,11 +164,12 @@ public class UserController {
         userRepository.save(u);
         String username = u.getUsername();
 
-        return "redirect:/myPage/page/"+username;
+        return "redirect:/myPage";
     }
 
-    @GetMapping("/users/changePass/{username}")
-    public String changePassword(@PathVariable("username") String username, Model model){
+    @GetMapping("/users/changePass")
+    public String changePassword(Model model){
+        String username = getSignedUser();
         model.addAttribute("user", userRepository.findUserByUsername(username));
         return "user/editPassword";
     }
@@ -166,10 +196,10 @@ public class UserController {
             String new_p = passwordEncoder.encode(newPassword);
             u.setPassword(new_p);
             userRepository.save(u);
-            return "redirect:/myPage/page/"+username;
+            return "redirect:/myPage";
         }
 
-        return "redirect:/users/changePass/"+username;
+        return "redirect:/users/changePass";
     }
 
     @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET)
@@ -276,5 +306,11 @@ public class UserController {
         userRepository.delete(s);
         return "redirect:/staffs/list";
     }
+
+//    @RequestMapping(value = "/username", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String currentUserName(Authentication authentication) {
+//        return authentication.getName();
+//    }
 
 }

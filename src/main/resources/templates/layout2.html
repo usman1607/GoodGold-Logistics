@@ -44,7 +44,7 @@
                         <a class="nav-link active" th:href="@{/}"><i class="fa fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/myPage/page/{username}(username=${#request.remoteUser})}">
+                        <a class="nav-link active" th:href="@{/myPage}">
                             <i class="fa fa-user"></i>My Dashboard
                         </a>
                     </li>
@@ -90,12 +90,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/users/profile}">
                                 <i class="fa fa-edit"></i>Edit My Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/users/changePass}">
                                 <i class="fa fa-key"></i>Change Password
                             </a>
                         </li>
@@ -103,7 +103,7 @@
 
                     <div sec:authorize="hasRole('SELLER')">
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/myList/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/products/myList}">
                                 <i class="fa fa-clipboard-list"></i>All My Products
                             </a>
                         </li>
@@ -113,22 +113,22 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/products/create/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/products/create}">
                                 <i class="fa fa-plus-circle"></i>Add New Product
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/profile/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/users/profile}">
                                 <i class="fa fa-edit"></i>Edit My Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/users/changePass/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/users/changePass}">
                                 <i class="fa fa-key"></i>Change Password
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/myPaymentStatus/details/{username}(username=${#request.remoteUser})}">
+                            <a class="nav-link" th:href="@{/myPaymentStatus/details}">
                                 <i class="fa fa-question-circle"></i>My Status
                             </a>
                         </li>
@@ -148,7 +148,7 @@
                     <div class="btn-group mr-2">
                         <!--                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
                         <div><h3>Welcome, <span sec:authentication="name">Username</span></h3></div>
-                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>
+<!--                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>-->
                     </div>
                 </div>
             </div>
