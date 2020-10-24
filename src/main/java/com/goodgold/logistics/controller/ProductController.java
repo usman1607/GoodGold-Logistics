@@ -4,6 +4,7 @@ import com.goodgold.logistics.model.*;
 import com.goodgold.logistics.model.viewmodels.RegisterProductModel;
 import com.goodgold.logistics.model.viewmodels.RegisterShipmentModel;
 import com.goodgold.logistics.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -29,13 +30,16 @@ public class ProductController {
     WarehouseRepository warehouseRepository;
     final
     CategoryRepository categoryRepository;
+    final
+    EmailController emailController;
 
-    public ProductController(ProductRepository productRepository, ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
+    public ProductController(ProductRepository productRepository, ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, CategoryRepository categoryRepository, UserRepository userRepository, EmailController emailController) {
         this.productRepository = productRepository;
         this.shipmentRepository = shipmentRepository;
         this.warehouseRepository = warehouseRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
+        this.emailController = emailController;
     }
 
     public String getSignedUser() {
@@ -134,6 +138,13 @@ public class ProductController {
         product.setStatus("Approved");
         productRepository.save(product);
 
+        String receiver = product.getUser().getUsername();
+        String subject = "Product Approved";
+        String msg = "Dear"+ product.getUser().getFirstName() + " " + product.getUser().getLastName()+",\n"+
+                "We are pleased to tell you that your product had been approved by our warehouse team. You can now go" +
+                " ahead to ship the product and send us the shipment details.\n Thanks.\n GGL Team.";
+        emailController.sendSimpleMessage(receiver, subject, msg);
+
         return "redirect:/products/list";
     }
 
@@ -142,6 +153,13 @@ public class ProductController {
         Product product = productRepository.findById(id).get();
         product.setStatus("Disapproved");
         productRepository.save(product);
+
+        String receiver = product.getUser().getUsername();
+        String subject = "Product Disapproved";
+        String msg = "Dear"+ product.getUser().getFirstName() + " " + product.getUser().getLastName()+",\n"+
+                "We are sorry to inform you that your product had been disapproved by our warehouse team, due to some reason." +
+                " We regret any pain or inconvenience this might cause you.\n Thanks.\n GGL Team.";
+        emailController.sendSimpleMessage(receiver, subject, msg);
 
         return "redirect:/products/list";
     }

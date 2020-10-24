@@ -29,11 +29,11 @@
         </tr>
         <tr>
             <td>SHIPPING DATE</td>
-            <td th:text="${shipment.getShippingDate()}"> </td>
+            <td th:text="${#dates.format(shipment.getShippingDate(), 'dd-MMM-yyyy hh:mm a')}"> </td>
         </tr>
         <tr>
             <td>Expected D.Date</td>
-            <td th:text="${shipment.getExpectedDeliveryDate()}"></td>
+            <td th:text="${#dates.format(shipment.getExpectedDeliveryDate(), 'dd-MM-yyyy hh:mm a')}"></td>
         </tr>
         <tr>
             <td>Actual D.Date</td>

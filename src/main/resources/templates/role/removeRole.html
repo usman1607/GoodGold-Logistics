@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
+<head>
+    <title>Remove Role</title>
+</head>
+
+<body layout:fragment="content">
+<h3>Remove Role</h3>
+<div class="p-2 createForm add-role">
+    <form method="post" th:object="${staff}" th:action="${'/staffs/removeOneRole'}">
+        <input type="hidden" name="id" th:field="*{id}" />
+        <div class="form-group">
+            <label>Staff Name</label>
+            <input class="form-control" th:field="*{lastName}" name="name" readonly>
+        </div>
+
+        <div class="form-group" >
+            <label>Role</label>
+            <select class="form-control" id="name" name="name">
+                <option value="">--Select Role--</option>
+                <option th:each="r : ${staff.getRoles()}" th:value="${r.getName()}" th:text="${r.getName()}"></option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" onclick="return confirm('Are you sure you want to remove the role?');" name="addRole" id="addRole" value="Remove Role"/>
+        </div>
+    </form>
+
+    <div th:if="${dontHave}" class="mt-3">
+        <span class="alert alert-info text-warning" th:text="${dontHave}"></span>
+    </div>
+</div>
+</body>
+</html>

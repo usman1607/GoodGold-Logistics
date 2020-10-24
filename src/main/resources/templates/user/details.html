@@ -36,7 +36,7 @@
         </tr>
         <tr>
             <td>Title</td>
-            <td th:text="${user.getTitle()}"></td>
+            <td th:text="${user.getTitle()}+' '+${user.getJobTitle()}"></td>
         </tr>
         <tr>
             <td>Address</td>
@@ -53,6 +53,10 @@
         <tr>
             <td>Country</td>
             <td th:text="${user.getCountry()}"></td>
+        </tr>
+        <tr>
+            <td>Roles</td>
+            <td th:text="${roles}" colspan="2"></td>
         </tr>
     </table>
 </div>

@@ -1,5 +1,6 @@
 package com.goodgold.logistics.controller;
 
+import com.goodgold.logistics.model.User;
 import com.goodgold.logistics.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class IndexController {
 
-    @Autowired
+    final
     UserRepository userRepository;
+
+    public IndexController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @GetMapping("/layout")
     public String layout(Model model){

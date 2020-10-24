@@ -55,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/register").permitAll()
                 .antMatchers("/login*").permitAll()
 
+//                .antMatchers("/sendEmail").hasRole("STAFF")
                 .antMatchers("/staffs/create").hasRole("STAFF")
                 .antMatchers("/staffs/add").hasRole("STAFF")
                 .antMatchers("/staffs/list").hasRole("STAFF")
@@ -63,6 +64,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/warehouses/list").hasRole("STAFF")
                 .antMatchers("/shipments/list").hasRole("STAFF")
 
+                .antMatchers("/staffs/removeRole/**").hasRole("ADMIN")
+                .antMatchers("/staffs/assignRole/**").hasRole("ADMIN")
                 .antMatchers("/users/moreInfo/**").hasRole("STAFF")
                 .antMatchers("/categories/**").hasRole("STAFF")
                 .antMatchers("/roles/**").hasRole("STAFF")
@@ -72,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                // .loginProcessingUrl("/loginSecure")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/myPage", true)
               //  .usernameParameter("username").passwordParameter("password")
                 //.failureUrl("/login.html?error=true")
                 //.failureHandler(authenticationFailureHandler())

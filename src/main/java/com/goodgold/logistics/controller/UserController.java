@@ -93,7 +93,13 @@ public class UserController {
 
     @RequestMapping(value = "/users/moreInfo/{id}", method = RequestMethod.GET)
     public String users(@PathVariable("id") long id, Model model){
-        model.addAttribute("user", userRepository.findById(id).get());
+        User u = userRepository.findById(id).get();
+        List<String> roles = new ArrayList<>();
+        for(Role r : u.getRoles()){
+            roles.add(r.getName());
+        }
+        model.addAttribute("user", u);
+        model.addAttribute("roles", roles);
         return "user/details";
     }
 
@@ -122,16 +128,16 @@ public class UserController {
     }
 
     @RequestMapping(value = "/myPage", method = RequestMethod.GET)
-    public String myPage(Model model){
+    public String myPage(Model model, Authentication authentication){
 
-        String username = getSignedUser();
+        String username = authentication.getName(); //getSignedUser();
         User u = userRepository.findUserByUsername(username);
         List<String> roles = new ArrayList<>();
         for(Role r : u.getRoles()){
             roles.add(r.getName());
         }
 
-        model.addAttribute("user", userRepository.findUserByUsername(username));
+        model.addAttribute("user", u);
         model.addAttribute("roles", roles);
         return "admin/dashboard";
     }
