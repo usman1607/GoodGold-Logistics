@@ -10,6 +10,8 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     //Product findById(long id);
     List<Product> findProductsByUserUsername(String username);
     List<Product> findProductsByUserId(long id);
+    List<Product> findProductsByUserIdAndShipmentStatus(long id, String status);
+    List<Product> findProductsByShipmentStatus(String status);
     Product findProductByShipmentId(long id);
 
     @Query(value = "SELECT COUNT(*) FROM product WHERE product.user_id = :id", nativeQuery = true)

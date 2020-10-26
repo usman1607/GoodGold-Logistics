@@ -1,70 +1,78 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorate="~{layout2}">-->
-<!--<head>-->
-<!--    <title>Edit Shipment</title>-->
-<!--</head>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}">
+<head>
+    <title>Edit Shipment</title>
+</head>
 
-<!--<body layout:fragment="content">-->
-<!--<div class="p-2 add-staff createForm" >-->
-<!--    <h4>Add New Product</h4>-->
-<!--    <form method="post" th:action="${'/shipments/update'}" th:object="${shipment}">-->
-<!--        <input type="hidden" name="id" th:field="*{id}">-->
-<!--        <div class="row">-->
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>Shipping Id:</label>-->
-<!--                <input type="text" class="form-control" th:field="*{id}" readonly>-->
-<!--            </div>-->
+<body layout:fragment="content">
+<div class="p-2 add-staff createForm" >
+    <h4>Update Product Shipment on Delivery</h4>
+    <form method="post" th:action="${'/shipments/update'}" th:object="${product}">
+        <input type="hidden" name="id" th:field="*{id}">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Product:</label>
+                <Span type="text" class="form-control" th:text="*{name}" readonly></Span>
+            </div>
 
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>Tracking No.:</label>-->
-<!--                <input type="text" class="form-control" th:field="${shipment.getTrackingNo()}" name="trackingNo" readonly>-->
-<!--            </div>-->
+            <div class="form-group col-md-4">
+                <label>Tracking No.:</label>
+                <span type="text" class="form-control" th:text="*{shipment.trackingNo}" name="trackingNo" readonly></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Product Quantity:</label>
+                <input type="text" class="form-control" th:field="*{quantity}" name="quantity">
+            </div>
 
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>Shipping from where?</label>-->
-<!--                <input type="text" class="form-control" th:field="${shipment.getShippingLocation()}" name="shippingLocation" readonly>-->
-<!--            </div>-->
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Shipping from where?</label>
+                <span type="text" class="form-control" th:text="*{shipment.shippingLocation}" name="shippingLocation" readonly></span>
+            </div>
 
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>Shipping To:</label>-->
-<!--                <input type="text" class="form-control" th:field="${shipment.getWarehouse().getCode()}" name="warehouseCode" readonly>-->
-<!--            </div>-->
-<!--            <div class="form-group col-md-4" >-->
-<!--                <label>New Status</label>-->
-<!--                <select class="form-control" name="status">-->
-<!--                    <option value="">&#45;&#45;Select&#45;&#45;</option>-->
+            <div class="form-group col-md-4">
+                <label>Shipping To:</label>
+                <span type="text" class="form-control" th:text="*{shipment.warehouse.code}" name="warehouseCode" readonly></span>
+            </div>
+            <div class="form-group col-md-4" >
+                <label>New Status</label>
+                <select class="form-control" name="status">
+                    <option value="">--Select--</option>
 <!--                    <option value="In Transit">In Transit</option>-->
 <!--                    <option value="In Customs' Custody">In Customs' Custody</option>-->
-<!--                    <option value="In Stock">In Stock</option>-->
-<!--                    <option value="All Sold">All Sold</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--        </div>-->
+                    <option value="In Stock">In Stock</option>
+                    <option value="All Sold">All Sold</option>
+                </select>
+            </div>
+        </div>
 
-<!--        <div class="row">-->
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>Shipping Date:</label>-->
-<!--                <input type="text" th:field="${shipment.getShippingDate()}" class="form-control mw-100" name="shippingDate" readonly>-->
-<!--            </div>-->
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Shipping Date:</label>
+                <span type="text" th:text="*{#dates.format(shipment.shippingDate, 'dd-MMM-yyyy hh:mm a')}" class="form-control mw-100" name="shippingDate" readonly></span>
+            </div>
 
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>EDD</label>-->
-<!--                <input type="text" th:field="${shipment.getExpectedDeliveryDate()}" class="form-control mw-100" name="expectedDeliveryDate" readonly>-->
-<!--            </div>-->
-<!--            <div class="form-group col-md-4">-->
-<!--                <label>ADD</label>-->
-<!--                <input type="datetime-local" class="form-control mw-100" name="actualDeliveryDate">-->
-<!--            </div>-->
-<!--        </div>-->
+            <div class="form-group col-md-4">
+                <label>Expected D. Date</label>
+                <span type="text" th:text="*{#dates.format(shipment.expectedDeliveryDate, 'dd-MMM-yyyy hh:mm a')}" class="form-control" name="expectedDeliveryDate" readonly></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Actual D. Date</label>
+                <input type="datetime-local" class="form-control" name="actualDeliveryDate">
+            </div>
+        </div>
+        <div class="form-group ">
+           <label>Note:</label>
+            <textarea name="note" class="form-control" cols="25" rows="3" required></textarea>
+        </div>
 
-<!--        <div>-->
-<!--            <button class="btn-outline-success" name="button">Edit Shipment</button>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
+        <div>
+            <button class="btn-outline-success" name="button">Edit Shipment</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

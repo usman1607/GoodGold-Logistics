@@ -32,12 +32,15 @@ public class ShipmentController {
 
     final
     UserRepository userRepository;
+    final
+    EmailController emailController;
 
-    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, ProductRepository productRepository, UserRepository userRepository) {
+    public ShipmentController(ShipmentRepository shipmentRepository, WarehouseRepository warehouseRepository, ProductRepository productRepository, UserRepository userRepository, EmailController emailController) {
         this.shipmentRepository = shipmentRepository;
         this.warehouseRepository = warehouseRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.emailController = emailController;
     }
 
     public String getSignedUser() {
@@ -54,6 +57,12 @@ public class ShipmentController {
 
     @RequestMapping(value = "/shipments/list", method = RequestMethod.GET)
     public String shipments(Model model){
+//        List<Shipment> shipments = (List<Shipment>) shipmentRepository.findAll();
+//        List<Product> products = null;
+//        for(Shipment s : shipments){
+//            products.add(productRepository.findProductByShipmentId(s.getId()));
+//        }
+//        model.addAttribute("products", products);
         model.addAttribute("shipments", shipmentRepository.findAll());
         return "shipment/list";
     }
@@ -132,15 +141,22 @@ public class ShipmentController {
 
     @RequestMapping(value = "/shipments/edit/{id}", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
-
-        model.addAttribute("shipment", shipmentRepository.findById(id).get());
-        return "shipment/edit";
+        Product product = productRepository.findProductByShipmentId(id);
+        Shipment shipment = shipmentRepository.findById(id).get();
+        if(!shipment.getStatus().equals("In Transit")){
+            return "/error/403";
+        }else {
+            model.addAttribute("product", product);
+            model.addAttribute("shipment", shipment);
+            return "shipment/edit";
+        }
     }
 
     @RequestMapping(value = "/shipments/update", method = RequestMethod.POST)
-    public String updateShipment(Model model, @RequestParam long id, @RequestParam String status, @RequestParam String actualDeliveryDate) throws ParseException {
+    public String updateShipment(Model model, @RequestParam long id, @RequestParam String note, @RequestParam int quantity, @RequestParam String status, @RequestParam String actualDeliveryDate) throws ParseException {
+        Product p = productRepository.findById(id).get();
+        Shipment s = p.getShipment();
 
-        Shipment s= shipmentRepository.findById(id).get();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 
 //        Warehouse w = warehouseRepository.findWarehouseByCode(code);
@@ -153,8 +169,25 @@ public class ShipmentController {
         s.setStatus(status);
         Date ADDate = formatter.parse(actualDeliveryDate);
         s.setActualDeliveryDate(ADDate);
+        p.setQuantity(quantity);
 
+        productRepository.save(p);
         shipmentRepository.save(s);
+        String to = p.getUser().getUsername();
+        String subject = "Product Delivered";
+        String msg = "Dear "+p.getUser().getFirstName()+" "+p.getUser().getLastName()+",\n\n"+
+        note+"\n\n"+
+                "Details:\n"+
+                "Product Name: "+ p.getName()+"\n"+
+                "Product Quantity: "+p.getQuantity()+"\n"+
+                "Actual Delivery Date: "+ADDate+"\n"+
+                "Warehouse: "+s.getWarehouse().getCode()+"\n"+
+                "Tracking No: "+s.getTrackingNo()+"\n\n"+
+
+                "Thanks.\n"+
+                "GGL Team.";
+
+        emailController.sendSimpleMessage(to, subject, msg);
 
         return "redirect:/shipments/list";
     }

@@ -24,7 +24,7 @@
             <th>STATUS</th>
             <th>TRACKING NO.</th>
             <th>SHIPPING TO:</th>
-            <th>UPDATE STATUS</th>
+            <th>UPDATE DELIVERY</th>
             <th>DETAILS</th>
         </tr>
         </thead>
@@ -35,7 +35,7 @@
             <td th:text="${c.getStatus()}"></td>
             <td th:text="${c.getTrackingNo()}"></td>
             <td th:text="${c.getWarehouse().getCode()}"></td>
-            <td><a th:href="@{/shipments/updateStatus/{id}(id=${c.getId()})}"><button class="btn btn-warning" name="button">Update Status</button></a></td>
+            <td><a th:href="@{/shipments/edit/{id}(id=${c.getId()})}"><button class="btn btn-warning" name="button">Update Status</button></a></td>
             <td><a th:href="@{/shipments/details/{id}(id=${c.getId()})}"><button class="btn btn-info" name="button">Details</button></a></td>
         </tr>
         </tbody>
@@ -44,8 +44,9 @@
     <section layout:fragment="scripts">
 
         <script>
+            const table = document.getElementById("shipTab");
             function serialNo() {
-                const table = document.getElementById("shipTab");
+
                 let s_No = 1;
                 for (let line=1; line < table.rows.length; line++)
                 {
@@ -54,6 +55,20 @@
                 }
             }
             serialNo();
+
+            function upd_sh() {
+                for (let line=1; line < table.rows.length; line++)
+                {
+                    if(table.rows[line].cells[2].innerHTML == "Not Yet Shipped"){
+                        table.rows[line].cells[5].innerHTML = "Not Yet Shipped";
+                    }
+
+                    if(table.rows[line].cells[2].innerHTML == "In Stock"){
+                        table.rows[line].cells[5].innerHTML = "In Stock";
+                    }
+                }
+            }
+            upd_sh();
         </script>
     </section>
 </body>

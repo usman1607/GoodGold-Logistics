@@ -11,9 +11,13 @@
 <div class="col-md-8 text-left userProfile h3 font-weight-normal mb-5">
     <h4 class="h4">Shipment Details</h4>
     <table class="table table-hover table-striped">
+<!--        <tr>-->
+<!--            <td>ID</td>-->
+<!--            <td th:text="${shipment.getId()}"></td>-->
+<!--        </tr>-->
         <tr>
-            <td>ID</td>
-            <td th:text="${shipment.getId()}"></td>
+            <td>PRODUCT:</td>
+            <td th:text="${product.getName()}"></td>
         </tr>
         <tr>
             <td>SHIPPED BY:</td>
@@ -37,7 +41,7 @@
         </tr>
         <tr>
             <td>Actual D.Date</td>
-            <td th:text="${shipment.getActualDeliveryDate()}"></td>
+            <td th:text="${#dates.format(shipment.getActualDeliveryDate(), 'dd-MMM-yyyy hh:mm a')}"></td>
         </tr>
         <tr>
             <td>TRACKING NO.</td>

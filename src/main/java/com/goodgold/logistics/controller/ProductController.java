@@ -151,8 +151,10 @@ public class ProductController {
     @GetMapping("/products/disapprove/{id}")
     public String disapproveProduct(@PathVariable("id") long id, Model model){
         Product product = productRepository.findById(id).get();
+        Shipment s = product.getShipment();
         product.setStatus("Disapproved");
         productRepository.save(product);
+        shipmentRepository.delete(s);
 
         String receiver = product.getUser().getUsername();
         String subject = "Product Disapproved";
