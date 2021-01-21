@@ -26,11 +26,11 @@
         </tr>
         <tr>
             <td>SENDER'S NAME</td>
-            <td th:text="${product.getUser().getFirstName()}+' '+${product.getUser().getLastName()}"> </td>
+            <td th:text="${product.getUser().getFirstName()}+' '+${product.getUser().getLastName()}"></td>
         </tr>
         <tr>
             <td>WAREHOUSE</td>
-            <td th:text="${product.getShipment().getWarehouse().getCode()}"> </td>
+            <td th:text="${product.getShipment().getWarehouse().getCode()}"></td>
         </tr>
         <tr>
             <td>SHIPMENT STATUS</td>
@@ -55,7 +55,8 @@
                     <span>OK: </span>
                     <span>
                         <a th:href="@{/products/approve/{id}(id=${product.getId()})}">
-                            <button class="btn btn-sm btn-info" onclick="return confirm('Are you sure you want to approve the product?');">
+                            <button class="btn btn-sm btn-info"
+                                    onclick="return confirm('Are you sure you want to approve the product?');">
                                 Approve Product</button>
                         </a>
                     </span>
@@ -64,7 +65,8 @@
                     <span>NOT OK: </span>
                     <span>
                         <a th:href="@{/products/disapprove/{id}(id=${product.getId()})}">
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to disapprove the product?');">
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to disapprove the product?');">
                                 Disapprove</button>
                         </a>
                     </span>

@@ -23,98 +23,100 @@
                     <span class="text-danger" th:text="${param.error}"></span>
                 </div>
                 <form th:action="@{/users/register}" method="post">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>First Name:</label>
-                                <input type="text" id="firstName" name="firstName" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label>Last Name:</label>
-                                <input type="text" id="lastName" name="lastName" class="form-control" required>
-                            </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>First Name:</label>
+                            <input type="text" id="firstName" name="firstName" class="form-control" required>
                         </div>
-                        <div th:if="${param.ageError}">
-                            <span class="text-danger" th:text="${param.ageError}"></span>
+                        <div class="form-group col-md-6">
+                            <label>Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" class="form-control" required>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-2">
-                                <label>Age:</label>
-                                <input type="number" id="age" min="18" name="age" class="form-control" required>
-                            </div>
-
-                            <div class="form-group col-md-3">
-                                <label>Gender</label>
-                                <select name="sex" id="sex" class="form-control">
-                                    <option value="">Select</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Rather not say">Rather not say</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-7">
-                                <label>Address:</label>
-                                <input type="text" id="address" name="address" class="form-control" required>
-                            </div>
+                        r}">
+                        <span class="text-dang
+                        </div>
+                        <div th:if=" ${param.ageErroer" th:text="${param.ageError}"></span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label>Age:</label>
+                            <input type="number" id="age" min="18" name="age" class="form-control" required>
                         </div>
 
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label>City:</label>
-                                <input type="text" id="city" name="city" class="form-control" required>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>State:</label>
-                                <input type="text" id="state" name="state" class="form-control" required>
-                            </div>
-
-                            <div class="form-group col-md-4">
-                                <label>Country:</label>
-                                <input type="text" id="country" name="country" class="form-control" required>
-                            </div>
+                        <div class="form-group col-md-3">
+                            <label>Gender</label>
+                            <select name="sex" id="sex" class="form-control">
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Rather not say">Rather not say</option>
+                            </select>
                         </div>
 
-                        <div th:if="${param.emailError}">
-                            <span class="text-danger" th:text="${param.emailError}"></span>
+                        <div class="form-group col-md-7">
+                            <label>Address:</label>
+                            <input type="text" id="address" name="address" class="form-control" required>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>Phone No:</label>
-                                <input type="text" id="phoneNo" name="phoneNo" class="form-control" required>
-                            </div>
+                    </div>
 
-                            <div class="form-group col-md-6">
-                                <label>Email:</label>
-                                <input type="email" id="userName" name="userName" class="form-control" required>
-                            </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>City:</label>
+                            <input type="text" id="city" name="city" class="form-control" required>
                         </div>
 
-                        <div th:if="${param.passError}">
-                            <span class="text-danger" th:text="${param.passError}"></span>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label>Create Password:</label>
-                                <input type="password" name="password" id="password" class="form-control" required>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label>Confirm Password:</label>
-                                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
-                            </div>
+                        <div class="form-group col-md-4">
+                            <label>State:</label>
+                            <input type="text" id="state" name="state" class="form-control" required>
                         </div>
 
+                        <div class="form-group col-md-4">
+                            <label>Country:</label>
+                            <input type="text" id="country" name="country" class="form-control" required>
+                        </div>
+                    </div>
 
-                        <label>I accept all the <a data-toggle="modal" data-target="#myModal" href="#">
-                            Term and Conditions</a>
-                        </label>
-                        <label>
-                            <input type="checkbox" value="yes" required> Yes
-                        </label>
+                    <div th:if="${param.emailError}">
+                        <span class="text-danger" th:text="${param.emailError}"></span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Phone No:</label>
+                            <input type="text" id="phoneNo" name="phoneNo" class="form-control" required>
+                        </div>
 
-                        <button class="btn btn-primary btn-block" type="submit">Register</button>
-                    </form>
+                        <div class="form-group col-md-6">
+                            <label>Email:</label>
+                            <input type="email" id="userName" name="userName" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div th:if="${param.passError}">
+                        <span class="text-danger" th:text="${param.passError}"></span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Create Password:</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Confirm Password:</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                                   required>
+                        </div>
+                    </div>
+
+
+                    <label>I accept all the <a data-toggle="modal" data-target="#myModal" href="#">
+                        Term and Conditions</a>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="yes" required> Yes
+                    </label>
+
+                    <button class="btn btn-primary btn-block" type="submit">Register</button>
+                </form>
 
             </div>
         </div>
@@ -130,14 +132,17 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>On this page, you will find a standard version of the GOOD GOLD LOGISTICS Website Terms and Conditions. Please note that different terms and conditions may apply in certain countries.
+                    <p>On this page, you will find a standard version of the GOOD GOLD LOGISTICS Website Terms and
+                        Conditions. Please note that different terms and conditions may apply in certain countries.
                         The Terms and Conditions of use of the GOOD GOLD LOGISTICS Website are as follows:</p>
 
                     <p>Copyright <br>
                         The copyright in this publication is owned by GOOD GOLD LOGISTICS International Ltd.</p>
 
                     <p>Authorization to Reproduce<br>
-                        Any person may reproduce any portion of the material in these web pages subject to the following conditions:<p>
+                        Any person may reproduce any portion of the material in these web pages subject to the following
+                        conditions:
+                    <p>
 
                     <ul>
                         <li>The material may be used for information and non-commercial purposes only.</li>
@@ -145,7 +150,8 @@
                         <li>No unauthorized copy is made of any GOOD GOLD LOGISTICS trademark.</li>
                         <li>Any copy of any portion of the material must include the following copyright notice:</li>
                     </ul>
-                    <p class="text-info text-center">Copyright © GOOD GOLD LOGISTICS International Ltd.<br> All Rights Reserved.</p>
+                    <p class="text-info text-center">Copyright © GOOD GOLD LOGISTICS International Ltd.<br> All Rights
+                        Reserved.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -159,7 +165,7 @@
 
 <section layout:fragment="scripts">
     <script>
-        $(function() {
+        $(function () {
             congrats();
         });
     </script>

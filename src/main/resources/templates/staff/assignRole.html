@@ -7,25 +7,25 @@
 </head>
 
 <body layout:fragment="content">
-    <div class="p-2 createForm add-role">
-        <form method="post" th:object="${staff}" th:action="${'/staffs/assignNewRole'}">
-            <input type="hidden" name="id" th:field="*{id}" />
-            <div class="form-group">
-                <label>Staff Name</label>
-                <input class="form-control" th:field="*{lastName}" name="name" readonly>
-            </div>
+<div class="p-2 createForm add-role">
+    <form method="post" th:object="${staff}" th:action="${'/staffs/assignNewRole'}">
+        <input type="hidden" name="id" th:field="*{id}"/>
+        <div class="form-group">
+            <label>Staff Name</label>
+            <input class="form-control" th:field="*{lastName}" name="name" readonly>
+        </div>
 
-            <div class="form-group" >
-                <label>Role</label>
-                <select class="form-control" id="name" name="name">
-                    <option value="">--Select Role--</option>
-                    <option th:each="r : ${roles}" th:value="${r.getName()}" th:text="${r.getName()}"></option>
-                </select>
-            </div>
-            <div>
-                <input type="submit" name="addRole" id="addRole" value="Assign Role"/>
-            </div>
-        </form>
-    </div>
+        <div class="form-group">
+            <label>Role</label>
+            <select class="form-control" id="name" name="name">
+                <option value="">--Select Role--</option>
+                <option th:each="r : ${roles}" th:value="${r.getName()}" th:text="${r.getName()}"></option>
+            </select>
+        </div>
+        <div>
+            <input type="submit" name="addRole" id="addRole" value="Assign Role"/>
+        </div>
+    </form>
+</div>
 </body>
 </html>

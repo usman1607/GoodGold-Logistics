@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 public class ShipmentController {
-    
+
     final
     ShipmentRepository shipmentRepository;
     final
@@ -47,16 +47,16 @@ public class ShipmentController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String username;
-        if(principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        }else {
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
             username = principal.toString();
         }
         return username;
     }
 
     @RequestMapping(value = "/shipments/list", method = RequestMethod.GET)
-    public String shipments(Model model){
+    public String shipments(Model model) {
 //        List<Shipment> shipments = (List<Shipment>) shipmentRepository.findAll();
 //        List<Product> products = null;
 //        for(Shipment s : shipments){
@@ -68,28 +68,28 @@ public class ShipmentController {
     }
 
     @GetMapping("/shipments/details/{id}")
-    public String shipmentDetails(@PathVariable("id") long id, Model model){
+    public String shipmentDetails(@PathVariable("id") long id, Model model) {
         Product product = productRepository.findProductByShipmentId(id);
         Shipment shipment = shipmentRepository.findById(id).get();
 
         String username = getSignedUser();
         User u = userRepository.findUserByUsername(username);
         List<String> roles = new ArrayList<>();
-        for(Role r : u.getRoles()){
+        for (Role r : u.getRoles()) {
             roles.add(r.getName());
         }
 
-        if(product.getUser().getUsername().equals(username) || roles.contains("STAFF")) {
+        if (product.getUser().getUsername().equals(username) || roles.contains("STAFF")) {
             model.addAttribute("shipment", shipment);
             model.addAttribute("product", product);
             return "shipment/details";
-        }else {
+        } else {
             return "error/403";
         }
     }
 
     @GetMapping("/shipments/updateStatus/{id}")
-    public String shipmentUpdateStatus(@PathVariable("id") long id, Model model){
+    public String shipmentUpdateStatus(@PathVariable("id") long id, Model model) {
         model.addAttribute("shipment", shipmentRepository.findById(id).get());
         return "shipment/updateStatus";
     }
@@ -110,7 +110,7 @@ public class ShipmentController {
     }
 
     @GetMapping(value = "/shipments/create/{id}")
-    public String showCreateForm(@PathVariable("id") long id, Model model){
+    public String showCreateForm(@PathVariable("id") long id, Model model) {
         model.addAttribute("product", productRepository.findProductByShipmentId(id));
         model.addAttribute("shipment", shipmentRepository.findById(id).get());
         return "shipment/create";
@@ -123,7 +123,7 @@ public class ShipmentController {
 
         p.setQuantity(registerProductModel.getQuantity());
 
-        if(!registerShipmentModel.getShippingLocation().equals("")){
+        if (!registerShipmentModel.getShippingLocation().equals("")) {
             p.getShipment().setShippingLocation(registerShipmentModel.getShippingLocation());
         }
         p.getShipment().setStatus("In Transit");
@@ -136,16 +136,16 @@ public class ShipmentController {
         productRepository.save(p);
         shipmentRepository.save(p.getShipment());
 
-        return "redirect:/products/details/"+id;
+        return "redirect:/products/details/" + id;
     }
 
     @RequestMapping(value = "/shipments/edit/{id}", method = RequestMethod.GET)
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Product product = productRepository.findProductByShipmentId(id);
         Shipment shipment = shipmentRepository.findById(id).get();
-        if(!shipment.getStatus().equals("In Transit")){
+        if (!shipment.getStatus().equals("In Transit")) {
             return "/error/403";
-        }else {
+        } else {
             model.addAttribute("product", product);
             model.addAttribute("shipment", shipment);
             return "shipment/edit";
@@ -175,16 +175,16 @@ public class ShipmentController {
         shipmentRepository.save(s);
         String to = p.getUser().getUsername();
         String subject = "Product Delivered";
-        String msg = "Dear "+p.getUser().getFirstName()+" "+p.getUser().getLastName()+",\n\n"+
-        note+"\n\n"+
-                "Details:\n"+
-                "Product Name: "+ p.getName()+"\n"+
-                "Product Quantity: "+p.getQuantity()+"\n"+
-                "Actual Delivery Date: "+ADDate+"\n"+
-                "Warehouse: "+s.getWarehouse().getCode()+"\n"+
-                "Tracking No: "+s.getTrackingNo()+"\n\n"+
+        String msg = "Dear " + p.getUser().getFirstName() + " " + p.getUser().getLastName() + ",\n\n" +
+                note + "\n\n" +
+                "Details:\n" +
+                "Product Name: " + p.getName() + "\n" +
+                "Product Quantity: " + p.getQuantity() + "\n" +
+                "Actual Delivery Date: " + ADDate + "\n" +
+                "Warehouse: " + s.getWarehouse().getCode() + "\n" +
+                "Tracking No: " + s.getTrackingNo() + "\n\n" +
 
-                "Thanks.\n"+
+                "Thanks.\n" +
                 "GGL Team.";
 
         emailController.sendSimpleMessage(to, subject, msg);

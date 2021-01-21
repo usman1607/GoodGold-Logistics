@@ -22,7 +22,7 @@ public class Shipment {
     private String status;
     private String trackingNo;
 
-    public Shipment(){
+    public Shipment() {
 
     }
 

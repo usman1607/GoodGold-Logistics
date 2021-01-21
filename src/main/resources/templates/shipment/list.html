@@ -7,69 +7,74 @@
 </head>
 
 <body layout:fragment="content">
-    <div class="row">
-        <div class="col-md-6">
-            <h1>List of All Shipment</h1>
-        </div>
-        <div class="col-md-6">
-            <input type="text" class="mySearch float-right" placeholder="Search list...">
-        </div>
+<div class="row">
+    <div class="col-md-6">
+        <h1>List of All Shipment</h1>
     </div>
-    <table class="table table-striped table-sm bg-dark text-white" id="shipTab">
-        <caption class="table-head">LIST OF All SHIPMENT</caption>
-        <thead>
-        <tr>
-            <th>S/N</th>
-            <th>SHIPMENT LOCATION</th>
-            <th>STATUS</th>
-            <th>TRACKING NO.</th>
-            <th>SHIPPING TO:</th>
-            <th>UPDATE DELIVERY</th>
-            <th>DETAILS</th>
-        </tr>
-        </thead>
-        <tbody class="myTable">
-        <tr th:each="c : *{shipments}">
-            <td></td>
-            <td th:text="${c.getShippingLocation()}"></td>
-            <td th:text="${c.getStatus()}"></td>
-            <td th:text="${c.getTrackingNo()}"></td>
-            <td th:text="${c.getWarehouse().getCode()}"></td>
-            <td><a th:href="@{/shipments/edit/{id}(id=${c.getId()})}"><button class="btn btn-warning" name="button">Update Status</button></a></td>
-            <td><a th:href="@{/shipments/details/{id}(id=${c.getId()})}"><button class="btn btn-info" name="button">Details</button></a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="col-md-6">
+        <input type="text" class="mySearch float-right" placeholder="Search list...">
+    </div>
+</div>
+<table class="table table-striped table-sm bg-dark text-white" id="shipTab">
+    <caption class="table-head">LIST OF All SHIPMENT</caption>
+    <thead>
+    <tr>
+        <th>S/N</th>
+        <th>SHIPMENT LOCATION</th>
+        <th>STATUS</th>
+        <th>TRACKING NO.</th>
+        <th>SHIPPING TO:</th>
+        <th>UPDATE DELIVERY</th>
+        <th>DETAILS</th>
+    </tr>
+    </thead>
+    <tbody class="myTable">
+    <tr th:each="c : *{shipments}">
+        <td></td>
+        <td th:text="${c.getShippingLocation()}"></td>
+        <td th:text="${c.getStatus()}"></td>
+        <td th:text="${c.getTrackingNo()}"></td>
+        <td th:text="${c.getWarehouse().getCode()}"></td>
+        <td><a th:href="@{/shipments/edit/{id}(id=${c.getId()})}">
+            <button class="btn btn-warning" name="button">Update Status</button>
+        </a></td>
+        <td><a th:href="@{/shipments/details/{id}(id=${c.getId()})}">
+            <button class="btn btn-info" name="button">Details</button>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
 
-    <section layout:fragment="scripts">
+<section layout:fragment="scripts">
 
-        <script>
-            const table = document.getElementById("shipTab");
-            function serialNo() {
+    <script>
+        const table = document.getElementById("shipTab");
 
-                let s_No = 1;
-                for (let line=1; line < table.rows.length; line++)
-                {
-                    table.rows[line].cells[0].innerHTML = s_No.toString();
-                    s_No++;
+        function serialNo() {
+
+            let s_No = 1;
+            for (let line = 1; line < table.rows.length; line++) {
+                table.rows[line].cells[0].innerHTML = s_No.toString();
+                s_No++;
+            }
+        }
+
+        serialNo();
+
+        function upd_sh() {
+            for (let line = 1; line < table.rows.length; line++) {
+                if (table.rows[line].cells[2].innerHTML == "Not Yet Shipped") {
+                    table.rows[line].cells[5].innerHTML = "Not Yet Shipped";
+                }
+
+                if (table.rows[line].cells[2].innerHTML == "In Stock") {
+                    table.rows[line].cells[5].innerHTML = "In Stock";
                 }
             }
-            serialNo();
+        }
 
-            function upd_sh() {
-                for (let line=1; line < table.rows.length; line++)
-                {
-                    if(table.rows[line].cells[2].innerHTML == "Not Yet Shipped"){
-                        table.rows[line].cells[5].innerHTML = "Not Yet Shipped";
-                    }
-
-                    if(table.rows[line].cells[2].innerHTML == "In Stock"){
-                        table.rows[line].cells[5].innerHTML = "In Stock";
-                    }
-                }
-            }
-            upd_sh();
-        </script>
-    </section>
+        upd_sh();
+    </script>
+</section>
 </body>
 </html>

@@ -24,18 +24,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         Optional<com.goodgold.logistics.model.User> optionalUser = userRepository.findByUsername(userName);
-        if(optionalUser.isPresent()) {
+        if (optionalUser.isPresent()) {
             com.goodgold.logistics.model.User user = optionalUser.get();
 
             List<String> roleList = new ArrayList<String>();
-            for(Role role:user.getRoles()) {
+            for (Role role : user.getRoles()) {
                 roleList.add(role.getName());
             }
 
             return User.builder()
                     .username(user.getUsername())
                     //change here to store encoded password in db
-                    .password( user.getPassword() )
+                    .password(user.getPassword())
                     .disabled(user.isDisabled())
                     .accountExpired(user.isAccountExpired())
                     .accountLocked(user.isAccountLocked())

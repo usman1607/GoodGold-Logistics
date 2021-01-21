@@ -18,7 +18,7 @@ public class Warehouse {
     private String country;
     private int capacity;
 
-    public Warehouse(){
+    public Warehouse() {
 
     }
 

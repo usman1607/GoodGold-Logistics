@@ -18,19 +18,19 @@ public class WarehouseController {
     }
 
     @RequestMapping(value = "/warehouses/list", method = RequestMethod.GET)
-    public String warehouses(Model model){
+    public String warehouses(Model model) {
         model.addAttribute("warehouses", warehouseRepository.findAll());
         return "warehouse/list";
     }
 
     @RequestMapping(value = "/warehouses/wh_list", method = RequestMethod.GET)
-    public String warehousesList(Model model){
+    public String warehousesList(Model model) {
         model.addAttribute("warehouses", warehouseRepository.findAll());
         return "user/wh_list";
     }
 
     @GetMapping("/warehouses/create")
-    public String create(Model model){
+    public String create(Model model) {
         return "warehouse/list";
     }
 
@@ -51,7 +51,7 @@ public class WarehouseController {
     }
 
     @GetMapping("/warehouses/details/{id}")
-    public String warehouseDetails(@PathVariable("id") int id, Model model){
+    public String warehouseDetails(@PathVariable("id") int id, Model model) {
         model.addAttribute("warehouse", warehouseRepository.findById(id).get());
         return "warehouse/details";
     }
@@ -66,7 +66,7 @@ public class WarehouseController {
     @RequestMapping(value = "/warehouses/update", method = RequestMethod.POST)
     public String updateRole(Model model, @RequestParam int id, RegisterWarehouseModel registerWarehouseModel) {
 
-        Warehouse w= warehouseRepository.findById(id).get();
+        Warehouse w = warehouseRepository.findById(id).get();
 
         w.setCode(registerWarehouseModel.getCode());
         w.setAddress(registerWarehouseModel.getAddress());

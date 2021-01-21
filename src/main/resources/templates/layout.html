@@ -30,7 +30,9 @@
             <img style="width: 25%" th:src="@{/images/logo1.png}">
         </a>
 
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -53,22 +55,22 @@
                         <button class="btn btn-outline-light"><b>My Page</b></button>
                     </a>
                 </li>
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                        Blog-->
-<!--                    </a>-->
-<!--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">-->
-<!--                        <a class="dropdown-item" href="#">Testimonies</a>-->
-<!--                        <a class="dropdown-item" href="#">Our Staffs</a>-->
-<!--                        <a class="dropdown-item" href="#">Our Warehouses</a>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                        Blog-->
+                <!--                    </a>-->
+                <!--                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">-->
+                <!--                        <a class="dropdown-item" href="#">Testimonies</a>-->
+                <!--                        <a class="dropdown-item" href="#">Our Staffs</a>-->
+                <!--                        <a class="dropdown-item" href="#">Our Warehouses</a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
 
                 <div sec:authorize="isAuthenticated()">
                     <li class="icons dropdown">
-                        <div class="text-white user-img c-pointer position-relative"   data-toggle="dropdown">
-    <!--                        <span class="activity active"></span>-->
-<!--                            <img th:src="@{/images/1.png}" height="40" width="40" alt="">-->
+                        <div class="text-white user-img c-pointer position-relative" data-toggle="dropdown">
+                            <!--                        <span class="activity active"></span>-->
+                            <!--                            <img th:src="@{/images/1.png}" height="40" width="40" alt="">-->
                             <i class="fa fa-user-circle fa-2x"></i>
                             <span sec:authentication="name">Username</span>
                         </div>
@@ -113,7 +115,7 @@
             <a th:href="@{https://www.facebook.com}" target="_blank"><i class="ml-5 mr-2 fab fa-facebook-f"></i></a>
             <a th:href="@{https://www.twitter.com}" target="_blank"><i class="mr-2 fab fa-twitter"></i></a>
             <a th:href="@{https://www.instagram.com}" target="_blank"><i class="mr-2 fab fa-instagram"></i></a>
-<!--            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>-->
+            <!--            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>-->
         </p>
     </div>
 </footer>

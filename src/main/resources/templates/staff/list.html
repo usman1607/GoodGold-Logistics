@@ -7,62 +7,68 @@
 </head>
 
 <body layout:fragment="content">
-    <div class="row">
-        <div class="col-md-6">
-            <h1>List of All Staff</h1>
-        </div>
-        <div class="col-md-6">
-            <input type="text" class="mySearch float-right" placeholder="Search list...">
-        </div>
+<div class="row">
+    <div class="col-md-6">
+        <h1>List of All Staff</h1>
     </div>
-    <table class="table table-striped table-sm bg-light text-dark table-hover" id="staffTab">
-        <caption class="table-head">LIST OF All STAFF</caption>
-        <thead>
-        <tr>
-            <th>S/N</th>
-            <th>NAME</th>
-            <th>SEX</th>
-            <th>EMAIL</th>
-            <th>PHONE NO</th>
-            <th>JOB TITLE</th>
-            <th>Assign Role</th>
-            <th>Remove Role</th>
-            <th>DETAILS</th>
-<!--                    <th>EDIT</th>-->
-        </tr>
-        </thead>
-        <tbody class="myTable">
-        <tr th:each="s : *{staffs}">
-            <td></td>
-            <td th:text="${s.getFirstName()}+ ' ' +${s.getLastName()}"></td>
-            <td th:text="${s.getSex()}"></td>
-            <td th:text="${s.getUsername()}"></td>
-            <td th:text="${s.getPhoneNo()}"></td>
-            <td th:text="${s.getJobTitle()}"></td>
-            <td><a th:href="@{/staffs/assignRole/{id}(id=${s.getId()})}"><button class="btn btn-sm btn-outline-success" name="button">Assign Role</button></a></td>
-            <td><a th:href="@{/staffs/removeRole/{id}(id=${s.getId()})}"><button class="btn btn-sm btn-outline-danger" name="button">Remove Role</button></a></td>
-            <td><a th:href="@{/users/moreInfo/{id}(id=${s.getId()})}"><button class="btn btn-sm btn-warning" name="button">Full Details</button></a></td>
-<!--                    <td><a th:href="@{/staffs/edit/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>-->
-        </tr>
-        </tbody>
-    </table>
+    <div class="col-md-6">
+        <input type="text" class="mySearch float-right" placeholder="Search list...">
+    </div>
+</div>
+<table class="table table-striped table-sm bg-light text-dark table-hover" id="staffTab">
+    <caption class="table-head">LIST OF All STAFF</caption>
+    <thead>
+    <tr>
+        <th>S/N</th>
+        <th>NAME</th>
+        <th>SEX</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>JOB TITLE</th>
+        <th>Assign Role</th>
+        <th>Remove Role</th>
+        <th>DETAILS</th>
+        <!--                    <th>EDIT</th>-->
+    </tr>
+    </thead>
+    <tbody class="myTable">
+    <tr th:each="s : *{staffs}">
+        <td></td>
+        <td th:text="${s.getFirstName()}+ ' ' +${s.getLastName()}"></td>
+        <td th:text="${s.getSex()}"></td>
+        <td th:text="${s.getUsername()}"></td>
+        <td th:text="${s.getPhoneNo()}"></td>
+        <td th:text="${s.getJobTitle()}"></td>
+        <td><a th:href="@{/staffs/assignRole/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-outline-success" name="button">Assign Role</button>
+        </a></td>
+        <td><a th:href="@{/staffs/removeRole/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-outline-danger" name="button">Remove Role</button>
+        </a></td>
+        <td><a th:href="@{/users/moreInfo/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-warning" name="button">Full Details</button>
+        </a></td>
+        <!--                    <td><a th:href="@{/staffs/edit/{id}(id=${s.getId()})}"><button class="btn-warning" name="button">Edit</button></a></td>-->
+    </tr>
+    </tbody>
+</table>
 
-    <a class="mb-lg-5" th:href="@{/staffs/create}">Add New Staff</a>
+<a class="mb-lg-5" th:href="@{/staffs/create}">Add New Staff</a>
 
-    <section layout:fragment="scripts">
+<section layout:fragment="scripts">
 
-        <script>
-            function serialNo() {
-                const table = document.getElementById("staffTab");
-                let s_No = 1;
-                for (let line=1; line < table.rows.length; line++)
-                {
-                    table.rows[line].cells[0].innerHTML = s_No.toString();
-                    s_No++;
-                }
+    <script>
+        function serialNo() {
+            const table = document.getElementById("staffTab");
+            let s_No = 1;
+            for (let line = 1; line < table.rows.length; line++) {
+                table.rows[line].cells[0].innerHTML = s_No.toString();
+                s_No++;
             }
-            serialNo();
-        </script>
-    </section>
+        }
+
+        serialNo();
+    </script>
+</section>
 </body>
 </html>

@@ -7,7 +7,7 @@
 </head>
 
 <body layout:fragment="content">
-<div class="p-2 add-staff createForm" >
+<div class="p-2 add-staff createForm">
     <h4>Update Product Shipment on Delivery</h4>
     <form method="post" th:action="${'/shipments/update'}" th:object="${product}">
         <input type="hidden" name="id" th:field="*{id}">
@@ -19,7 +19,8 @@
 
             <div class="form-group col-md-4">
                 <label>Tracking No.:</label>
-                <span type="text" class="form-control" th:text="*{shipment.trackingNo}" name="trackingNo" readonly></span>
+                <span type="text" class="form-control" th:text="*{shipment.trackingNo}" name="trackingNo"
+                      readonly></span>
             </div>
             <div class="form-group col-md-4">
                 <label>Product Quantity:</label>
@@ -30,19 +31,21 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Shipping from where?</label>
-                <span type="text" class="form-control" th:text="*{shipment.shippingLocation}" name="shippingLocation" readonly></span>
+                <span type="text" class="form-control" th:text="*{shipment.shippingLocation}" name="shippingLocation"
+                      readonly></span>
             </div>
 
             <div class="form-group col-md-4">
                 <label>Shipping To:</label>
-                <span type="text" class="form-control" th:text="*{shipment.warehouse.code}" name="warehouseCode" readonly></span>
+                <span type="text" class="form-control" th:text="*{shipment.warehouse.code}" name="warehouseCode"
+                      readonly></span>
             </div>
-            <div class="form-group col-md-4" >
+            <div class="form-group col-md-4">
                 <label>New Status</label>
                 <select class="form-control" name="status">
                     <option value="">--Select--</option>
-<!--                    <option value="In Transit">In Transit</option>-->
-<!--                    <option value="In Customs' Custody">In Customs' Custody</option>-->
+                    <!--                    <option value="In Transit">In Transit</option>-->
+                    <!--                    <option value="In Customs' Custody">In Customs' Custody</option>-->
                     <option value="In Stock">In Stock</option>
                     <option value="All Sold">All Sold</option>
                 </select>
@@ -52,12 +55,14 @@
         <div class="row">
             <div class="form-group col-md-4">
                 <label>Shipping Date:</label>
-                <span type="text" th:text="*{#dates.format(shipment.shippingDate, 'dd-MMM-yyyy hh:mm a')}" class="form-control mw-100" name="shippingDate" readonly></span>
+                <span type="text" th:text="*{#dates.format(shipment.shippingDate, 'dd-MMM-yyyy hh:mm a')}"
+                      class="form-control mw-100" name="shippingDate" readonly></span>
             </div>
 
             <div class="form-group col-md-4">
                 <label>Expected D. Date</label>
-                <span type="text" th:text="*{#dates.format(shipment.expectedDeliveryDate, 'dd-MMM-yyyy hh:mm a')}" class="form-control" name="expectedDeliveryDate" readonly></span>
+                <span type="text" th:text="*{#dates.format(shipment.expectedDeliveryDate, 'dd-MMM-yyyy hh:mm a')}"
+                      class="form-control" name="expectedDeliveryDate" readonly></span>
             </div>
             <div class="form-group col-md-4">
                 <label>Actual D. Date</label>
@@ -65,7 +70,7 @@
             </div>
         </div>
         <div class="form-group ">
-           <label>Note:</label>
+            <label>Note:</label>
             <textarea name="note" class="form-control" cols="25" rows="3" required></textarea>
         </div>
 

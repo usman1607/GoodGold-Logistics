@@ -25,13 +25,13 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/roles/list", method = RequestMethod.GET)
-    public String roles(Model model){
+    public String roles(Model model) {
         model.addAttribute("roles", roleRepository.findAll());
         return "role/list";
     }
 
     @GetMapping("/roles/create")
-    public String create(Model model){
+    public String create(Model model) {
         return "role/list";
     }
 
@@ -53,7 +53,7 @@ public class RoleController {
     @RequestMapping(value = "/roles/update", method = RequestMethod.POST)
     public String updateRole(Model model, @RequestParam int id, @RequestParam String name) {
 
-        Role role= roleRepository.findById(id).get();
+        Role role = roleRepository.findById(id).get();
         role.setName(name);
 
         roleRepository.save(role);
@@ -84,15 +84,15 @@ public class RoleController {
 
         List<Role> user_roles = s.getRoles();
         List<Integer> uR_id = new ArrayList<>();
-        for(Role r : user_roles){
+        for (Role r : user_roles) {
             uR_id.add(r.getId());
         }
-        if(uR_id.contains(role.getId())){
+        if (uR_id.contains(role.getId())) {
             user_roles.remove(role);
             s.setRoles(user_roles);
             userRepository.save(s);
             return "redirect:/staffs/list";
-        }else {
+        } else {
             model.addAttribute("dontHave", "The staff does not have the selected role.");
             return "role/removeRole";
         }

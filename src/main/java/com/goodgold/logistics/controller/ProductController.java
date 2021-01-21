@@ -4,17 +4,13 @@ import com.goodgold.logistics.model.*;
 import com.goodgold.logistics.model.viewmodels.RegisterProductModel;
 import com.goodgold.logistics.model.viewmodels.RegisterShipmentModel;
 import com.goodgold.logistics.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -46,23 +42,25 @@ public class ProductController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String username;
-        if(principal instanceof UserDetails) {
-            username = ((UserDetails)principal).getUsername();
-        }else {
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
             username = principal.toString();
         }
         return username;
     }
 
-    @RequestMapping(value = "/products/list", method = RequestMethod.GET)
-    public String products(Model model){
+    @RequestMapping(path = "/products/list", method = RequestMethod.GET)
+    public String products(Model model) {
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("allProducts", productRepository.count());
+
         return "product/list";
     }
 
+
     @GetMapping("/products/create")
-    public String create(Model model){
+    public String create(Model model) {
 
         String username = getSignedUser();
         model.addAttribute("warehouses", warehouseRepository.findAll());
@@ -108,17 +106,17 @@ public class ProductController {
     }
 
     @GetMapping("/products/details/{id}")
-    public String productDetails(@PathVariable("id") long id, Model model){
+    public String productDetails(@PathVariable("id") long id, Model model) {
         Product product = productRepository.findById(id).get();
 
         String username = getSignedUser();
         User u = userRepository.findUserByUsername(username);
         List<String> roles = new ArrayList<>();
-        for(Role r : u.getRoles()){
+        for (Role r : u.getRoles()) {
             roles.add(r.getName());
         }
 
-        if(product.getUser().getUsername().equals(username) || roles.contains("STAFF")) {
+        if (product.getUser().getUsername().equals(username) || roles.contains("STAFF")) {
             if (product.getStatus().equals("Not Yet Approved")) {
                 model.addAttribute("approval", "approval");
                 model.addAttribute("product", product);
@@ -127,20 +125,20 @@ public class ProductController {
                 model.addAttribute("product", product);
             return "product/details";
 
-        }else {
+        } else {
             return "error/403";
         }
     }
 
     @GetMapping("/products/approve/{id}")
-    public String approveProduct(@PathVariable("id") long id, Model model){
+    public String approveProduct(@PathVariable("id") long id, Model model) {
         Product product = productRepository.findById(id).get();
         product.setStatus("Approved");
         productRepository.save(product);
 
         String receiver = product.getUser().getUsername();
         String subject = "Product Approved";
-        String msg = "Dear"+ product.getUser().getFirstName() + " " + product.getUser().getLastName()+",\n"+
+        String msg = "Dear" + product.getUser().getFirstName() + " " + product.getUser().getLastName() + ",\n" +
                 "We are pleased to tell you that your product had been approved by our warehouse team. You can now go" +
                 " ahead to ship the product and send us the shipment details.\n Thanks.\n GGL Team.";
         emailController.sendSimpleMessage(receiver, subject, msg);
@@ -149,7 +147,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/disapprove/{id}")
-    public String disapproveProduct(@PathVariable("id") long id, Model model){
+    public String disapproveProduct(@PathVariable("id") long id, Model model) {
         Product product = productRepository.findById(id).get();
         Shipment s = product.getShipment();
         product.setStatus("Disapproved");
@@ -158,7 +156,7 @@ public class ProductController {
 
         String receiver = product.getUser().getUsername();
         String subject = "Product Disapproved";
-        String msg = "Dear"+ product.getUser().getFirstName() + " " + product.getUser().getLastName()+",\n"+
+        String msg = "Dear" + product.getUser().getFirstName() + " " + product.getUser().getLastName() + ",\n" +
                 "We are sorry to inform you that your product had been disapproved by our warehouse team, due to some reason." +
                 " We regret any pain or inconvenience this might cause you.\n Thanks.\n GGL Team.";
         emailController.sendSimpleMessage(receiver, subject, msg);
@@ -167,28 +165,28 @@ public class ProductController {
     }
 
     @GetMapping("/products/myList")
-    public String myList(Model model){
+    public String myList(Model model) {
         String username = getSignedUser();
         User u = userRepository.findUserByUsername(username);
         List<Product> products = productRepository.findProductsByUserUsername(username);
         model.addAttribute("products", products);
 
-        for(Product p : products) {
+        for (Product p : products) {
             if (p.getShipment().getStatus().equals("Not Yet Shipped") && (p.getStatus().equals("Approved"))) {
                 p.setShip("ship");
             }
         }
         long myProducts = productRepository.allProducts(u.getId());
-        if(myProducts != 0){
+        if (myProducts != 0) {
             model.addAttribute("myProducts", myProducts);
-        }else {
+        } else {
             model.addAttribute("noProduct", "There is no product added yet...");
         }
         return "product/list";
     }
 
     @GetMapping("/users/products/{id}")
-    public String userProducts(@PathVariable("id") long id, Model model){
+    public String userProducts(@PathVariable("id") long id, Model model) {
         model.addAttribute("products", productRepository.findProductsByUserId(id));
         return "product/list";
     }

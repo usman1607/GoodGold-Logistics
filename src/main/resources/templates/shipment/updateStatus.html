@@ -7,33 +7,33 @@
 </head>
 
 <body layout:fragment="content">
-    <div class="p-2 createForm add-role">
-        <h4 class="h4">Update Shipment Status</h4>
-        <form method="post" th:action="${'/shipments/newStatus'}" th:object="${shipment}">
-            <div class="form-group">
-                <label>Id</label>
-                <input class="form-control" th:field="*{id}" name="id" readonly>
-            </div>
-            <div class="form-group" >
-                <label>New Status</label>
-                <select class="form-control" name="newStatus">
-                    <option value="">--Select--</option>
-<!--                    <option value="Not Yet Shipped">In Transit</option>-->
-<!--                    <option value="In Transit">In Transit</option>-->
-<!--                    <option value="In Customs' Custody">In Customs' Custody</option>-->
-                    <option value="In Stock">In Stock</option>
-                    <option value="All Sold">All Sold</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>ADD</label>
-                <input type="datetime-local" class="form-control" name="actualDeliveryDate">
-            </div>
-            <div>
-                <input type="submit" name="saveRole" id="saveRole" value="Update Status"/>
-            </div>
-        </form>
-    </div>
+<div class="p-2 createForm add-role">
+    <h4 class="h4">Update Shipment Status</h4>
+    <form method="post" th:action="${'/shipments/newStatus'}" th:object="${shipment}">
+        <div class="form-group">
+            <label>Id</label>
+            <input class="form-control" th:field="*{id}" name="id" readonly>
+        </div>
+        <div class="form-group">
+            <label>New Status</label>
+            <select class="form-control" name="newStatus">
+                <option value="">--Select--</option>
+                <!--                    <option value="Not Yet Shipped">In Transit</option>-->
+                <!--                    <option value="In Transit">In Transit</option>-->
+                <!--                    <option value="In Customs' Custody">In Customs' Custody</option>-->
+                <option value="In Stock">In Stock</option>
+                <option value="All Sold">All Sold</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>ADD</label>
+            <input type="datetime-local" class="form-control" name="actualDeliveryDate">
+        </div>
+        <div>
+            <input type="submit" name="saveRole" id="saveRole" value="Update Status"/>
+        </div>
+    </form>
+</div>
 </div>
 </body>
 </html>

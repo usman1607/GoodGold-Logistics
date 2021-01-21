@@ -28,7 +28,7 @@ public class Product {
     private String status;
     private String ship;
 
-    public Product(){
+    public Product() {
 
     }
 

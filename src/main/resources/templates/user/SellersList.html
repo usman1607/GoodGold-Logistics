@@ -7,62 +7,70 @@
 </head>
 
 <body layout:fragment="content">
-    <div class="row">
-        <div class="col-md-6">
-            <h1>List of All Sellers</h1>
-        </div>
-        <div class="col-md-6">
-            <input type="text" class="mySearch float-right" placeholder="Search list">
-        </div>
+<div class="row">
+    <div class="col-md-6">
+        <h1>List of All Sellers</h1>
     </div>
-    <table class="table table-striped table-sm text-dark table-hover" id="sellerTab">
-        <caption class="table-head">LIST OF All SELLERS</caption>
-        <thead>
-        <tr>
-            <th>S/N</th>
-            <th>NAME</th>
-            <th>SEX</th>
-            <th>EMAIL</th>
-            <th>PHONE NO</th>
-            <th>STATE</th>
-            <th>COUNTRY</th>
-            <th>PRODUCTS</th>
-            <th>DETAILS</th>
-            <th>DELETE</th>
-        </tr>
-        </thead>
-        <tbody class="myTable">
-        <tr th:each="s : *{sellers}">
-            <td></td>
-            <td th:text="${s.getFirstName()}+' '+${s.getLastName()}"></td>
-            <td th:text="${s.getSex()}"></td>
-            <td th:text="${s.getUsername()}"></td>
-            <td th:text="${s.getPhoneNo()}"></td>
-            <td th:text="${s.getState()}"></td>
-            <td th:text="${s.getCountry()}"></td>
-            <td><a th:href="@{/users/products/{id}(id=${s.getId()})}"><button class="btn btn-sm btn-warning" name="button">Products</button></a></td>
-            <td><a th:href="@{/users/moreInfo/{id}(id=${s.getId()})}"><button class="btn btn-sm btn-warning" name="button">Full Details</button></a></td>
-            <td><a th:href="@{/users/delete/{id}(id=${s.getId()})}">
-                <button class="btn btn-sm btn-danger sellerDel" onclick="return confirm('Are you sure you want to delete?');" id="del-btn" name="button">Delete</button></a></td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="col-md-6">
+        <input type="text" class="mySearch float-right" placeholder="Search list">
+    </div>
+</div>
+<table class="table table-striped table-sm text-dark table-hover" id="sellerTab">
+    <caption class="table-head">LIST OF All SELLERS</caption>
+    <thead>
+    <tr>
+        <th>S/N</th>
+        <th>NAME</th>
+        <th>SEX</th>
+        <th>EMAIL</th>
+        <th>PHONE NO</th>
+        <th>STATE</th>
+        <th>COUNTRY</th>
+        <th>PRODUCTS</th>
+        <th>DETAILS</th>
+        <th>DELETE</th>
+    </tr>
+    </thead>
+    <tbody class="myTable">
+    <tr th:each="s : *{sellers}">
+        <td></td>
+        <td th:text="${s.getFirstName()}+' '+${s.getLastName()}"></td>
+        <td th:text="${s.getSex()}"></td>
+        <td th:text="${s.getUsername()}"></td>
+        <td th:text="${s.getPhoneNo()}"></td>
+        <td th:text="${s.getState()}"></td>
+        <td th:text="${s.getCountry()}"></td>
+        <td><a th:href="@{/users/products/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-warning" name="button">Products</button>
+        </a></td>
+        <td><a th:href="@{/users/moreInfo/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-warning" name="button">Full Details</button>
+        </a></td>
+        <td><a th:href="@{/users/delete/{id}(id=${s.getId()})}">
+            <button class="btn btn-sm btn-danger sellerDel"
+                    onclick="return confirm('Are you sure you want to delete?');" id="del-btn" name="button">Delete
+            </button>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
 
-    <section layout:fragment="scripts">
+<section layout:fragment="scripts">
 
-        <script>
-            const table = document.getElementById("sellerTab");
-            function serialNo() {
-                let s_No = 1;
-                for (let line=1; line < table.rows.length; line++)
-                {
-                    table.rows[line].cells[0].innerHTML = s_No.toString();
-                    s_No++;
-                }
+    <script>
+        const table = document.getElementById("sellerTab");
+
+        function serialNo() {
+            let s_No = 1;
+            for (let line = 1; line < table.rows.length; line++) {
+                table.rows[line].cells[0].innerHTML = s_No.toString();
+                s_No++;
             }
-            serialNo();
-        </script>
-    </section>
+        }
+
+        serialNo();
+    </script>
+</section>
 
 </body>
 </html>

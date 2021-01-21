@@ -33,7 +33,7 @@ public class MyErrorController implements ErrorController {
                 return "error/500";
             } else if (statusCode == HttpStatus.FORBIDDEN.value()) {
                 return "error/403";
-            }else if (statusCode == HttpStatus.BAD_REQUEST.value()) {
+            } else if (statusCode == HttpStatus.BAD_REQUEST.value()) {
                 return "error/400";
             }
 

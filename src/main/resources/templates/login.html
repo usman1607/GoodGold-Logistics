@@ -8,37 +8,37 @@
 
 <body layout:fragment="content" class="text-center login-body">
 <!--    <div th:if="${param.succeed}" id="succeed" class="alert alert-info text-success"></div>-->
-    <form class="form-signin" name="f" th:action="@{/login}" method="post">
-        <img class="mb-4" th:src="@{images/logo.png}" alt="" width="180" height="72">
-        <fieldset>
-            <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
-            <div th:if="${param.error}" class="alert alert-error text-danger">
-                Invalid username and/or password.
-            </div>
-            <div th:class="text-info" th:if="${param.logout}" class="alert alert-success">
-                You have been logged out.
-            </div>
-            <div class="form-group">
-                <label class="sr-only">Username/Email</label>
-                <input type="text" placeholder="Username" class="form-control" name="username" required autofocus/>
-            </div>
-            <div class="form-group">
-                <label class="sr-only">Password</label>
-                <input type="password" placeholder="Password" class="form-control" name="password" required/>
-            </div>
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
-            </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-primary">Login</button>
-            </div>
-            <div>
-                <h5 th:class="align-content-center">Not Register?<a th:href="@{/users/create}">Register here</a></h5>
-            </div>
-        </fieldset>
-    </form>
+<form class="form-signin" name="f" th:action="@{/login}" method="post">
+    <img class="mb-4" th:src="@{images/logo.png}" alt="" width="180" height="72">
+    <fieldset>
+        <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
+        <div th:if="${param.error}" class="alert alert-error text-danger">
+            Invalid username and/or password.
+        </div>
+        <div th:class="text-info" th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Username/Email</label>
+            <input type="text" placeholder="Username" class="form-control" name="username" required autofocus/>
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Password</label>
+            <input type="password" placeholder="Password" class="form-control" name="password" required/>
+        </div>
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div>
+            <h5 th:class="align-content-center">Not Register?<a th:href="@{/users/create}">Register here</a></h5>
+        </div>
+    </fieldset>
+</form>
 </div>
 
 <script>
@@ -46,53 +46,6 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!--<!DOCTYPE html>-->

@@ -12,7 +12,7 @@
 
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/_icon.png}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-<!--    <link rel="stylesheet" th:href="@{/css/modern-business.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/css/modern-business.css}">-->
     <link rel="stylesheet" th:href="@{/css/myCss.css}">
     <link rel="stylesheet" th:href="@{/css/signin.css}">
     <link rel="stylesheet" th:href="@{/fa/css/all.css}">
@@ -22,14 +22,18 @@
 
 <body>
 <nav class="navbar fixed-top navbar-dark sticky-top bg-success flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" th:href="@{/}"><img style="width: 35%" th:src="@{/images/logo1.png}"></a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" th:href="@{/}"><img style="width: 35%"
+                                                                            th:src="@{/images/logo1.png}"></a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-<!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
+    <!--    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">-->
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link" th:href="@{/logout}"><button class="btn btn-outline-light">Sign out</button></a>
+            <a class="nav-link" th:href="@{/logout}">
+                <button class="btn btn-outline-light">Sign out</button>
+            </a>
         </li>
     </ul>
 </nav>
@@ -146,9 +150,9 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group mr-2">
-<!--                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
-<!--                        <div><h3>Welcome, <span sec:authentication="name">Username</span></h3></div>-->
-<!--                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>-->
+                        <!--                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
+                        <!--                        <div><h3>Welcome, <span sec:authentication="name">Username</span></h3></div>-->
+                        <!--                        <div><span sec:authentication="principal.authorities">[SELLER, STAFF]</span></div>-->
                     </div>
                 </div>
             </div>
@@ -169,15 +173,22 @@
                         </div>
                         <div class="modal-body">
                             <p>When you registered on our website for free, you have to subscribe for one of our
-                                <a data-toggle="modal" data-target="#plans-modal" href="#">plans</a> before you can be able to send your products to any of our warehouses.</p>
-                            <p>When you have an active subscription with us, you can send the details of your products by
-                                clicking the "Add New Product" in your profile and wait for approval which will be done by
+                                <a data-toggle="modal" data-target="#plans-modal" href="#">plans</a> before you can be
+                                able to send your products to any of our warehouses.</p>
+                            <p>When you have an active subscription with us, you can send the details of your products
+                                by
+                                clicking the "Add New Product" in your profile and wait for approval which will be done
+                                by
                                 our always online team before you go ahead and ship the products to the warehouse that
-                                you choose, then you can as well send shipment details to us through the link in front of
+                                you choose, then you can as well send shipment details to us through the link in front
+                                of
                                 the product in your products list.
-                            <p>When the products get to our warehouse you will be notified by mail, then you can sell you product
-                                by any means and issue receipt to the buyer and also send the reference to us. After that the
-                                buyer can come and pick the goods from our warehouse, we can also do the delivery for you but it
+                            <p>When the products get to our warehouse you will be notified by mail, then you can sell
+                                you product
+                                by any means and issue receipt to the buyer and also send the reference to us. After
+                                that the
+                                buyer can come and pick the goods from our warehouse, we can also do the delivery for
+                                you but it
                                 will attract some charges.</p>
                         </div>
                         <div class="modal-footer">
@@ -198,53 +209,56 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body container mb-3 text-center">
-<!--                            <div class="row card-deck mb-3 text-center">-->
-                                <div class="card mb-4 shadow-sm">
-                                    <div class="card-header">
-                                        <h4 class="my-0 font-weight-normal">Basic</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h1 class="card-title pricing-card-title">$699 <small class="text-muted">/ Year</small></h1>
-                                        <ul class="list-unstyled mt-3 mb-4">
-                                            <li>5,000 Square Metres Space</li>
-                                            <li>Access to 5 warehouses</li>
-                                            <li>Email support</li>
-                                            <li>Help center access</li>
-                                        </ul>
-                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
-                                    </div>
+                            <!--                            <div class="row card-deck mb-3 text-center">-->
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">Basic</h4>
                                 </div>
-                                <div class="card mb-4 shadow-sm">
-                                    <div class="card-header">
-                                        <h4 class="my-0 font-weight-normal">Pro</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h1 class="card-title pricing-card-title">$1,000 <small class="text-muted">/ Year</small></h1>
-                                        <ul class="list-unstyled mt-3 mb-4">
-                                            <li>10,000 Square Metres Space</li>
-                                            <li>Access to 10 warehouses</li>
-                                            <li>Priority email support</li>
-                                            <li>Help center access</li>
-                                        </ul>
-                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
-                                    </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$699 <small class="text-muted">/
+                                        Year</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>5,000 Square Metres Space</li>
+                                        <li>Access to 5 warehouses</li>
+                                        <li>Email support</li>
+                                        <li>Help center access</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
                                 </div>
-                                <div class="card mb-4 shadow-sm">
-                                    <div class="card-header">
-                                        <h4 class="my-0 font-weight-normal">Premium</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <h1 class="card-title pricing-card-title">$1,499 <small class="text-muted">/ Year</small></h1>
-                                        <ul class="list-unstyled mt-3 mb-4">
-                                            <li>30,000 Square Metres Space</li>
-                                            <li>Access to all warehouses</li>
-                                            <li>Phone and email support</li>
-                                            <li>Help center access</li>
-                                        </ul>
-                                        <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
-                                    </div>
+                            </div>
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">Pro</h4>
                                 </div>
-<!--                            </div>-->
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$1,000 <small class="text-muted">/
+                                        Year</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>10,000 Square Metres Space</li>
+                                        <li>Access to 10 warehouses</li>
+                                        <li>Priority email support</li>
+                                        <li>Help center access</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
+                                </div>
+                            </div>
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-header">
+                                    <h4 class="my-0 font-weight-normal">Premium</h4>
+                                </div>
+                                <div class="card-body">
+                                    <h1 class="card-title pricing-card-title">$1,499 <small class="text-muted">/
+                                        Year</small></h1>
+                                    <ul class="list-unstyled mt-3 mb-4">
+                                        <li>30,000 Square Metres Space</li>
+                                        <li>Access to all warehouses</li>
+                                        <li>Phone and email support</li>
+                                        <li>Help center access</li>
+                                    </ul>
+                                    <button type="button" class="btn btn-lg btn-block btn-primary">Subscribe</button>
+                                </div>
+                            </div>
+                            <!--                            </div>-->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -269,7 +283,7 @@
             <a th:href="@{https://www.facebook.com}" target="_blank"><i class="ml-5 mr-2 fab fa-facebook-f"></i></a>
             <a th:href="@{https://www.twitter.com}" target="_blank"><i class="mr-2 fab fa-twitter"></i></a>
             <a th:href="@{https://www.instagram.com}" target="_blank"><i class="mr-2 fab fa-instagram"></i></a>
-<!--            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>-->
+            <!--            <a th:href="@{https://www.github.com}" target="_blank"><i class="mr-2 fab fa-github"></i></a>-->
         </p>
     </div>
 </footer>

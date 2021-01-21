@@ -19,13 +19,13 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/categories/list", method = RequestMethod.GET)
-    public String categories(Model model){
+    public String categories(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         return "category/list";
     }
 
     @GetMapping("/categories/create")
-    public String create(Model model){
+    public String create(Model model) {
         return "category/list";
     }
 
@@ -47,7 +47,7 @@ public class CategoryController {
     @RequestMapping(value = "/categories/update", method = RequestMethod.POST)
     public String updateCategory(Model model, @RequestParam int id, @RequestParam String name) {
 
-        Category category= categoryRepository.findById(id).get();
+        Category category = categoryRepository.findById(id).get();
         category.setName(name);
 
         categoryRepository.save(category);

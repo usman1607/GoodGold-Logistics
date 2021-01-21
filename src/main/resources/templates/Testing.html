@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout2}"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>All Products</title>
+</head>
+
+<body layout:fragment="content">
+<div>
+    <table id="productsTable" class="table display table-striped table-sm bg-light text-dark">
+        <caption class="table-head">LIST OF PRODUCTS</caption>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>List of Products</h1>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="mySearch float-right" placeholder="Search list...">
+            </div>
+        </div>
+        <!-- Header Table -->
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>SELLER NAME</th>
+            <th>WAREHOUSE</th>
+            <th>PRODUCT NAME</th>
+            <th>QUANTITY</th>
+            <th>PRODUCT STATUS</th>
+            <th>SHIPMENT STATUS</th>
+            <th>DETAILS</th>
+        </tr>
+        </thead>
+        <tbody class="myTable"></tbody>
+        <!-- Footer Table -->
+        <!--        <tfoot>-->
+        <!--        <tr>-->
+        <!--            <th>ID</th>-->
+        <!--            <th>SELLER NAME</th>-->
+        <!--            <th>WAREHOUSE</th>-->
+        <!--            <th>PRODUCT NAME</th>-->
+        <!--            <th>QUANTITY</th>-->
+        <!--            <th>PRODUCT STATUS</th>-->
+        <!--            <th>SHIPMENT STATUS</th>-->
+        <!--        </tr>-->
+        <!--        </tfoot>-->
+    </table>
+</div>
+
+
+</body>
+<section layout:fragment="scripts">
+    <script>
+        // $(document).ready(function (){
+        //     $('.myTable').DataTable();
+        // });
+
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+</section>
+</html>

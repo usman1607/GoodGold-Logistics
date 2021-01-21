@@ -11,19 +11,19 @@ mark {
     border: 2px solid powderblue;
 }
 
-.add-role{
+.add-role {
     max-width: 30%;
 }
 
-.margin-tp{
+.margin-tp {
     margin-top: 25px;
 }
 
-.add-staff{
+.add-staff {
     max-width: 70%;
 }
 
-.createForm{
+.createForm {
     border: 2px solid #0b2e13;
     background-color: #cbe0f6;
 }
