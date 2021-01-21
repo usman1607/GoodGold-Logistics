@@ -48,6 +48,7 @@ So the following will be done in the first face of the project:
 
 
 #Instructions & How It Works
+
 When you registered on our website for free, you have to subscribe for one of our plans before you can be able to send your products to any of our warehouses.
 
 When you have an active subscription with us, you can send the details of your products by clicking the "Add New Product" in your profile and wait for approval which will be done by our always online team before you go ahead and ship the products to the warehouse that you choose, then you can as well send shipment details to us through the link in front of the product in your products list.
