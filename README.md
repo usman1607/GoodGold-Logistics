@@ -47,7 +47,7 @@ So the following will be done in the first face of the project:
 
 
 
-#Instructions & How It Works
+# Instructions & How It Works
 
 When you registered on our website for free, you have to subscribe for one of our plans before you can be able to send your products to any of our warehouses.
 
