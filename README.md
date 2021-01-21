@@ -45,3 +45,12 @@ So the following will be done in the first face of the project:
 
 -   After updating the status of the product, the seller will be notified.
 
+
+
+#Instructions & How It Works
+When you registered on our website for free, you have to subscribe for one of our plans before you can be able to send your products to any of our warehouses.
+
+When you have an active subscription with us, you can send the details of your products by clicking the "Add New Product" in your profile and wait for approval which will be done by our always online team before you go ahead and ship the products to the warehouse that you choose, then you can as well send shipment details to us through the link in front of the product in your products list.
+
+When the products get to our warehouse you will be notified by mail, then you can sell you product by any means and issue receipt to the buyer and also send the reference to us. After that the buyer can come and pick the goods from our warehouse, we can also do the delivery for you but it will attract some charges.
+
